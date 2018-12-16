@@ -539,6 +539,19 @@
 		sel.remove(sel.selectedIndex);
 
 	}
+
+	function changeDDLText() {
+
+		if (document.getElementById("changeLabelDDL").value == "") {
+
+			alert("Please enter the label");
+		} else {
+			document.getElementById("ddllb" + getint).innerHTML = document.getElementById("changeLabelDDL").value;
+			alert("Update Successfully");
+		}
+
+	}
+
 	function changeRadioText() {
 
 		if (document.getElementById("changeLabelRadio").value == "") {
@@ -988,6 +1001,7 @@
 					if ($("#li_ddl" + j) != null) {
 						var length = document.getElementById("mySelect" + numCount).length;
 						arrCount.push(length);
+						arrDdlLabel.push($("#ddllb" + numCount).text());
 						for (var k = 0; k < length; k++) {//after count ddl length get the value inside option
 							arrDdlOption.push(document.getElementById("mySelect" + numCount).options[k].text);
 							arrDdlValue.push(document.getElementById("mySelect" + numCount).options[k].value);
@@ -999,6 +1013,7 @@
 				}
 				document.getElementById("hfDropLeft").value = arrLeft;
 				document.getElementById("hfDropTop").value = arrTop;
+				document.getElementById("hfDropLabel").value = arrDdlLabel;
 				document.getElementById("hfDropOption").value = arrDdlOption;
 				document.getElementById("hfDropValue").value = arrDdlValue;
 				document.getElementById("hfDropCount").value = arrCount;
@@ -1082,12 +1097,12 @@
 				var arrTop = [];
 				numCount = 0;
 				for (var j = 1; j <= document.getElementById('<%=hfHeader.ClientID%>').value; j++) {
-					if ($("#li_paragraph" + j) != null) {
+					if ($("#li_header" + j) != null) {
 						arrHeaderLabel.push($("#headerlb" + numCount).text);
 						arrHeaderFontSize.push(parseInt($("#headerlb" + numCount).css("fontSize")));
 						arrHeaderFontFami.push(document.getElementById("headerlb" + numCount).style.fontFamily);
-						arrLeft.push($("#li_paragraph" + j).position().left);
-						arrTop.push($("#li_paragraph" + j).position().top);
+						arrLeft.push($("#li_header" + j).position().left);
+						arrTop.push($("#li_header" + j).position().top);
 
 					}
 					numCount++;
@@ -1171,11 +1186,11 @@
 				document.getElementById("hfFileTop").value = arrTop;
 			}
 
-			if (countlabel > 0) {
+			if (document.getElementById('<%=hfLabel.ClientID%>').value > 0) {
 				var arrLeft = [];
 				var arrTop = [];
 				var numCount = 0;
-				for (var j = 1; j <= countlabel; j++) {
+				for (var j = 1; j <= document.getElementById('<%=hfLabel.ClientID%>').value; j++) {
 					if ($("#li_label" + j) != null) {
 						arrLabelTxt.push($("#labelID" + numCount).text());
 						arrLabelFontSize.push(parseInt($("#labelID" + numCount).css("fontSize")));
@@ -1190,11 +1205,11 @@
 				document.getElementById("hfLabelFontSize").value = arrLabelFontSize;
 			}
 
-			if (countImage > 0) {
+			if (document.getElementById('<%=hfImage.ClientID%>').value > 0) {
 				var arrLeft = [];
 				var arrTop = [];
 				var numCount = 0;
-				for (var j = 1; j <= countImage; j++) {
+				for (var j = 1; j <= document.getElementById('<%=hfImage.ClientID%>').value; j++) {
 
 					arrLeft.push($("#li_image" + j).position().left);
 					arrTop.push($("#li_image" + j).position().top);
@@ -1343,7 +1358,7 @@
 
 		function getdropdownlist(event) {
 
-			return '<div id="li_ddl" class="form_bal_ddl1" style="width:300px" ondrag="maintainDrag()"> <i class="fa fa-arrows-alt" style="float:right"></i> <select id="mySelect' + document.getElementById('<%=hfDrop.ClientID%>').value + '" style="width:300px" > <option > None </option> </select> <a href="#" id="btneditDDL' + document.getElementById('<%=hfDrop.ClientID%>').value + '" class="button" onclick="btnclick(this.id)"> Add </a> <a href="#" id="removeDDL' + document.getElementById('<%=hfDrop.ClientID%>').value + '" onclick="removeSelect(this.id)"> Remove selected option </a>  </div> '
+			return '<div id="li_ddl" class="form_bal_ddl1" style="width:300px" ondrag="maintainDrag()"> <i class="fa fa-arrows-alt" style="float:right"></i><div id="ddllb' + document.getElementById('<%=hfDrop.ClientID%>').value + '"> Label </div> <select id="mySelect' + document.getElementById('<%=hfDrop.ClientID%>').value + '" style="width:300px" > <option > None </option> </select> <a href="#" id="btneditDDL' + document.getElementById('<%=hfDrop.ClientID%>').value + '" class="button" onclick="btnclick(this.id)"> Add </a> <a href="#" id="removeDDL' + document.getElementById('<%=hfDrop.ClientID%>').value + '" onclick="removeSelect(this.id)"> Remove selected option </a>  </div> '
 		}
 
 		function getradiobutton(event) {
@@ -1660,6 +1675,10 @@
 				<div class="modal-content">
 
 					<div class="close_select">+</div>
+
+					Label
+					<input type="text" id="changeLabelDDL" />
+					<input type="button" value="Change Label Name" onclick="changeDDLText()" />
 
 					<div id="select-option">
 						Text 

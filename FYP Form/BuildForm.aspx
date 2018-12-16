@@ -546,7 +546,7 @@
 
 		//} else {
 
-			sel.remove(sel.selectedIndex);
+		sel.remove(sel.selectedIndex);
 		//}
 
 	}
@@ -559,21 +559,19 @@
 			document.getElementById("rblb" + getint).innerHTML = document.getElementById("changeLabelRadio").value;
 			alert("Update Successfully");
 		}
-    }
+	}
 
-    function changeDDLText() {
+	function changeDDLText() {
 
-        if (document.getElementById("changeLabelDDL").value == "") {
+		if (document.getElementById("changeLabelDDL").value == "") {
 
 			alert("Please enter the label");
 		} else {
 			document.getElementById("ddllb" + getint).innerHTML = document.getElementById("changeLabelDDL").value;
 			alert("Update Successfully");
-        }
+		}
 
-
-
-    }
+	}
 
 	function addRadio() {
 
@@ -991,6 +989,7 @@
 					if ($("#li_ddl" + j) != null) {
 						var length = document.getElementById("mySelect" + numCount).length;
 						arrCount.push(length);
+						arrDdlLabel.push($("#ddllb" + numCount).text());
 						for (var k = 0; k < length; k++) {//after count ddl length get the value inside option
 							arrDdlOption.push(document.getElementById("mySelect" + numCount).options[k].text);
 							arrDdlValue.push(document.getElementById("mySelect" + numCount).options[k].value);
@@ -1002,6 +1001,7 @@
 				}
 				document.getElementById("hfDropLeft").value = arrLeft;
 				document.getElementById("hfDropTop").value = arrTop;
+				document.getElementById("hfDropLabel").value = arrDdlLabel;
 				document.getElementById("hfDropOption").value = arrDdlOption;
 				document.getElementById("hfDropValue").value = arrDdlValue;
 				document.getElementById("hfDropCount").value = arrCount;
@@ -1544,7 +1544,7 @@
 					<div id="deletefield" class="delete">
 						Drag here to delete
 					</div>
-					<asp:FileUpload ID="imgupload" runat="server" style="display: none" onchange="showImage.call(this)"/>
+					<asp:FileUpload ID="imgupload" runat="server" Style="display: none" onchange="showImage.call(this)" />
 					<%--<input type="file" id="imgupload" style="display: none" onchange="showImage.call(this)" />--%>
 
 					<div>
@@ -1673,7 +1673,7 @@
 
 					<div class="close_select">+</div>
 
-                    Label
+					Label
 					<input type="text" id="changeLabelDDL" />
 					<input type="button" value="Change Label Name" onclick="changeDDLText()" />
 

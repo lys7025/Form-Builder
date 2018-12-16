@@ -143,14 +143,15 @@ namespace FYP_Form
 			if (eletypeList[i].name == "dropdown")
 			{
 				countDdl++;
-				html.Append("<select id='dropdown" + countDdl + "' class='item' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;'>");
+				int temp = countDdl - 1;
+				html.Append("<select id='dropdown" + countDdl + "' class='item' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;'><div id='ddllb" + temp + "'>" + eletypeList[i].label + "</div>");
 				for (int l = 0; l < eleListValueList.Count; l++)
 				{
 					html.Append("<option value='" + eleListValueList[l].value + "'>" + eleListValueList[l].name + "</option>");
 				}
 				html.Append("</select>");
 				//arrColName.Add(eletypeList[i].label);
-				arrColName.Add("ddlLabel");
+				arrColName.Add(eletypeList[i].label);
 			}
 			else if (eletypeList[i].name == "number")
 			{
