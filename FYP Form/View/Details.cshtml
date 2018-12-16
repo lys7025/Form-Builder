@@ -1,0 +1,77 @@
+﻿@model FormCreator.form
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Form information</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.staffID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.staffID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateGenerated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateGenerated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.version)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.version)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+    </dl>
+
+    <h4>Form view</h4>
+    <div style="width:100%; position:relative;">
+        @foreach (var item in Model.form_elements)
+        {
+            <div style="position:relative; left:@item.positionX; top:@item.positionY;">
+                @if ((bool)item.element_types.isPair)
+                {
+                    <@item.element_types.name id="@item.form_elementID" style="width:@item.width;height:@item.height;"></@item.element_types.name>
+                }
+                @if ((bool)item.element_types.isPair == false)
+                {
+                    <input type="@item.element_types.name" id="@item.form_elementID" style="width:@item.width;height:@item.height;" />
+                }
+            </div>
+        }
+            
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.formID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

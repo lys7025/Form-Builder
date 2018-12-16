@@ -1,0 +1,77 @@
+﻿@model FormCreator.form
+
+@{
+    ViewBag.FormInner = ""+ ViewBag.FormInner+"!";
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Build form content</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" id="form_drag_drop">
+        <table>
+            <tr>
+                <td id="toolbox" class="toolbox">
+                    <!--Output possible elements-->                    
+                     @foreach (var item in ViewBag.Elements)
+                     {                        
+
+                       <div id="box
+                            @item.elemTypeID" class="form_element">
+                       @item.name
+                       </div>                      
+                     }                     
+                </td>
+                <td style="position:relative;width:70%;" id="form_view" class="ui-widget-content">
+                    <!--Output block for elements:-->                    
+                        @foreach (var item in Model.form_elements)
+                        {
+                            <div style="position:relative; left:
+                                 @item.positionX
+                                 ; top:@item.positionY;width:@item.width;height:@item.height;" class="form_element">                                
+                                @item.element_types.name
+                            </div>                                                        
+                            
+                        }                    
+                </td>
+            </tr>
+        </table>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" id="submit" />
+                <input type="hidden" id="form_contains" name="form_contains" value="@ViewBag.FormInner"/>
+                <input type="hidden" id="formID" name="formID" value="@ViewBag.formID" />
+            </div>
+        </div>       
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/drag_drop")
+    <script type="text/javascript">
+        var LastId = 1;
+        $(document).ready(function () {
+            applyDragAndDrop("#form_drag_drop", "#toolbox", "#form_view", ".form_element");
+        });
+        $('#submit').click(function () {
+            //update data in the form_contains:
+            var res = "";
+            $("#form_view .form_element").forEach(function (element) {
+                res +=  + element.attr("id") + "|" + element.html() + "|" + element.position().left + "|" + element.position().top + "|" + element.width() + "|" + element.height() + ";");
+
+            });
+            $('#form_contains').val($('#form_contains').val() + $(item).attr("id") + "|" + $(item).html() + "|" + $(item).position().left + "|" + $(item).position().top + "|" + $(item).width() + "|" + $(item).height() + ";");
+        });
+    </script>
+}
+
