@@ -569,7 +569,8 @@
 		} else {
 			document.getElementById("ddllb" + getint).innerHTML = document.getElementById("changeLabelDDL").value;
 			alert("Update Successfully");
-		}
+        }
+
 
 
     }
