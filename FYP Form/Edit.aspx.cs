@@ -402,6 +402,7 @@ namespace FYP_Form
 			RetrieveForm();
 			int staffId = int.Parse(Session["staffId"].ToString());
 			string status = "active";
+			version += 1;
 
 			string conn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 			SqlConnection sqlConn = new SqlConnection(conn);
@@ -847,7 +848,7 @@ namespace FYP_Form
 			SqlConnection sqlConn = new SqlConnection(conn);
 			sqlConn.Open();
 			//int formId = 32;
-			int formId = Convert.ToInt32(Request.QueryString["id"]);
+			int formId = int.Parse(Session["FormId"].ToString());
 			string insertFormElement = "INSERT INTO Form_element Values (@formId, @eleTypeId, @xPosition, @yPosition)";
 
 			SqlCommand cmdInsertFormElement = new SqlCommand(insertFormElement, sqlConn);
