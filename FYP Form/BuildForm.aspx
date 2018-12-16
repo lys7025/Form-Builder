@@ -559,7 +559,20 @@
 			document.getElementById("rblb" + getint).innerHTML = document.getElementById("changeLabelRadio").value;
 			alert("Update Successfully");
 		}
-	}
+    }
+
+    function changeDDLText() {
+
+        if (document.getElementById("changeLabelDDL").value == "") {
+
+			alert("Please enter the label");
+		} else {
+			document.getElementById("ddllb" + getint).innerHTML = document.getElementById("changeLabelDDL").value;
+			alert("Update Successfully");
+		}
+
+
+    }
 
 	function addRadio() {
 
@@ -1330,7 +1343,7 @@
 
 		function getdropdownlist(event) {
 
-			return '<div id="li_ddl' + countDdl + '" class="form_bal_ddl1" ondrag="maintainDrag()" style="width:300px" > <i class="fa fa-arrows-alt" style="float:right"></i> <select id="mySelect' + countDdl + '" style="width:300px" > <option > None </option> </select> <a href="#" id="btneditDDL' + countDdl + '" class="button" onclick="btnclick(this.id)"> Add </a> <a href="#" id="removeDDL' + countDdl + '" onclick="removeSelect(this.id)"> Remove selected option </a>  </div> '
+			return '<div id="li_ddl' + countDdl + '" class="form_bal_ddl1" ondrag="maintainDrag()" style="width:300px" > <i class="fa fa-arrows-alt" style="float:right"></i> <div id="ddllb' + countDdl + '"> Label </div> <select id="mySelect' + countDdl + '" style="width:300px" > <option > None </option> </select> <a href="#" id="btneditDDL' + countDdl + '" class="button" onclick="btnclick(this.id)"> Add </a> <a href="#" id="removeDDL' + countDdl + '" onclick="removeSelect(this.id)"> Remove selected option </a>  </div> '
 		}
 
 		function getradiobutton(event) {
@@ -1658,6 +1671,11 @@
 				<div class="modal-content">
 
 					<div class="close_select">+</div>
+
+                    Label
+					<input type="text" id="changeLabelDDL" />
+					<input type="button" value="Change Label Name" onclick="changeDDLText()" />
+
 
 					<div id="select-option">
 						Text 
