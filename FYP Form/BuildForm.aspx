@@ -727,9 +727,9 @@
 
 			cursor: 'move',
 			revert: 'invalid',
-			stop: function () {
-				$(this).draggable('option', 'revert', 'invalid');
-			}
+			//stop: function () {
+			//	$(this).draggable('option', 'revert', 'invalid');
+			//}
 		});
 
 		$(".form_bal_textarea1").draggable({
