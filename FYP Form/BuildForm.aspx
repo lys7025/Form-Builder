@@ -550,7 +550,7 @@
 
 		//} else {
 
-			sel.remove(sel.selectedIndex);
+		sel.remove(sel.selectedIndex);
 		//}
 
 	}
@@ -563,21 +563,19 @@
 			document.getElementById("rblb" + getint).innerHTML = document.getElementById("changeLabelRadio").value;
 			alert("Update Successfully");
 		}
-    }
+	}
 
-    function changeDDLText() {
+	function changeDDLText() {
 
-        if (document.getElementById("changeLabelDDL").value == "") {
+		if (document.getElementById("changeLabelDDL").value == "") {
 
 			alert("Please enter the label");
 		} else {
 			document.getElementById("ddllb" + getint).innerHTML = document.getElementById("changeLabelDDL").value;
 			alert("Update Successfully");
-        }
+		}
 
-
-
-    }
+	}
 
 	function addRadio() {
 
@@ -735,9 +733,9 @@
 
 			cursor: 'move',
 			revert: 'invalid',
-			stop: function () {
-				$(this).draggable('option', 'revert', 'invalid');
-			}
+			//stop: function () {
+			//	$(this).draggable('option', 'revert', 'invalid');
+			//}
 		});
 
 		$(".form_bal_textarea1").draggable({
@@ -973,7 +971,7 @@
 				var totalNo = 0;
 				numCount = 0;
 				for (var j = 1; j <= countTxt; j++) {
-					if ($("#li_txtfield" + j) != null) {
+					if ($("#li_txtfield" + j).length != 0) {
 						arrTxtLabel.push($("#txtlb" + numCount).text());
 						arrLeft.push($("#li_txtfield" + j).position().left);
 						arrTop.push($("#li_txtfield" + j).position().top);
@@ -992,22 +990,27 @@
 				var arrLeft = [];
 				var arrTop = [];
 				var arrCount = [];
+				var totalNo = 0;
 				numCount = 0;
 				for (var j = 1; j <= countDdl; j++) {
-					if ($("#li_ddl" + j) != null) {
+					if ($("#li_ddl" + j).length != 0) {
 						var length = document.getElementById("mySelect" + numCount).length;
 						arrCount.push(length);
+						arrDdlLabel.push($("#ddllb" + numCount).text());
 						for (var k = 0; k < length; k++) {//after count ddl length get the value inside option
 							arrDdlOption.push(document.getElementById("mySelect" + numCount).options[k].text);
 							arrDdlValue.push(document.getElementById("mySelect" + numCount).options[k].value);
 						}
 						arrLeft.push($("#li_ddl" + j).position().left);
 						arrTop.push($("#li_ddl" + j).position().top);
-					}
+						totalNo++;
+					} 
 					numCount++;
 				}
+				document.getElementById("hfDrop").value = totalNo;
 				document.getElementById("hfDropLeft").value = arrLeft;
 				document.getElementById("hfDropTop").value = arrTop;
+				document.getElementById("hfDropLabel").value = arrDdlLabel;
 				document.getElementById("hfDropOption").value = arrDdlOption;
 				document.getElementById("hfDropValue").value = arrDdlValue;
 				document.getElementById("hfDropCount").value = arrCount;
@@ -1017,9 +1020,10 @@
 				var arrLeft = [];
 				var arrTop = [];
 				var arrCount = [];
+				var totalNo = 0;
 				numCount = 0;
 				for (var j = 1; j <= countRb; j++) {
-					if ($("#li_rb" + j) != null) {
+					if ($("#li_rb" + j).length != 0) {
 						var length = document.getElementsByName("radioName" + numCount).length;
 						arrCount.push(length);
 						arrRadioLabel.push($("#rblb" + numCount).text());
@@ -1029,9 +1033,11 @@
 						}
 						arrLeft.push($("#li_rb" + j).position().left);
 						arrTop.push($("#li_rb" + j).position().top);
+						totalNo++;
 					}
 					numCount++;
 				}
+				document.getElementById("hfRadio").value = totalNo;
 				document.getElementById("hfRadioLeft").value = arrLeft;
 				document.getElementById("hfRadioTop").value = arrTop;
 				document.getElementById("hfRadioLabel").value = arrRadioLabel;
@@ -1043,16 +1049,18 @@
 			if (counttextArea > 0) {
 				var arrLeft = [];
 				var arrTop = [];
+				var totalNo = 0;
 				numCount = 0;
 				for (var j = 1; j <= counttextArea; j++) {
-					if ($("#li_textarea" + j) != null) {
+					if ($("#li_textarea" + j).length != 0) {
 						arrTextareaLabel.push($("#txtarealb" + numCount).text());
 						arrLeft.push($("#li_textarea" + j).position().left);
 						arrTop.push($("#li_textarea" + j).position().top);
-
+						totalNo++;
 					}
 					numCount++;
 				}
+				document.getElementById("hfTextarea").value = totalNo;
 				document.getElementById("hfTextareaLabel").value = arrTextareaLabel;
 				document.getElementById("hfTextareaLeft").value = arrLeft;
 				document.getElementById("hfTextareaTop").value = arrTop;
@@ -1062,9 +1070,10 @@
 				var arrLeft = [];
 				var arrTop = [];
 				var arrCount = [];
+				var totalNo = 0;
 				numCount = 0;
 				for (var j = 1; j <= countcheck; j++) {
-					if ($("#li_checkbox" + j) != null) {
+					if ($("#li_checkbox" + j).length != 0) {
 						var length = document.getElementsByName("CheckBoxName" + numCount).length;
 						arrCount.push(length);
 						arrCheckLabel.push($("#checklb" + numCount).text());
@@ -1074,10 +1083,12 @@
 						}
 						arrLeft.push($("#li_checkbox" + j).position().left);
 						arrTop.push($("#li_checkbox" + j).position().top);
+						totalNo++;
 					}
 					numCount++;
 
 				}
+				document.getElementById("hfCheck").value = totalNo;
 				document.getElementById("hfCheckLeft").value = arrLeft;
 				document.getElementById("hfCheckTop").value = arrTop;
 				document.getElementById("hfCheckLabel").value = arrCheckLabel;
@@ -1089,19 +1100,21 @@
 			if (countheader > 0) {
 				var arrLeft = [];
 				var arrTop = [];
+				var totalNo = 0;
 				numCount = 0;
 				for (var j = 1; j <= countheader; j++) {
-					if ($("#li_header" + j) != null) {
+					if ($("#li_header" + j).length != 0) {
 						arrHeaderLabel.push($("#headerlb" + numCount).text());
 						arrHeaderFontSize.push(parseInt($("#headerlb" + numCount).css("fontSize")));
 						arrHeaderFontFami.push(document.getElementById("headerlb" + numCount).style.fontFamily);
 						arrLeft.push($("#li_header" + j).position().left);
 						arrTop.push($("#li_header" + j).position().top);
-
+						totalNo++;
 					}
 					numCount++;
 
 				}
+				document.getElementById("hfHeader").value = totalNo;
 				document.getElementById("hfHeaderLeft").value = arrLeft;
 				document.getElementById("hfHeaderTop").value = arrTop;
 				document.getElementById("hfHeaderFontFami").value = arrHeaderFontFami;
@@ -1112,18 +1125,20 @@
 			if (countparagraph > 0) {
 				var arrLeft = [];
 				var arrTop = [];
+				var totalNo = 0;
 				numCount = 0;
 				for (var j = 1; j <= countparagraph; j++) {
-					if ($("#li_paragraph" + j) != null) {
+					if ($("#li_paragraph" + j).length != 0) {
 						arrParaLabel.push($("#para_id" + numCount).text());
 						arrParaFontType.push(document.getElementById("para_id" + numCount).style.fontWeight == null ? "normal" : document.getElementById("para_id" + numCount).style.fontWeight);
 						arrParaFontColor.push(document.getElementById("para_id" + numCount).style.color == null ? "black" : document.getElementById("para_id" + numCount).style.color);
 						arrLeft.push($("#li_paragraph" + j).position().left);
 						arrTop.push($("#li_paragraph" + j).position().top);
-
+						totalNo++;
 					}
 					numCount++;
 				}
+				document.getElementById("hfParagraph").value = totalNo;
 				document.getElementById("hfParagraphLeft").value = arrLeft;
 				document.getElementById("hfParagraphTop").value = arrTop;
 				document.getElementById("hfParagraphFontType").value = arrParaFontType;
@@ -1134,16 +1149,19 @@
 			if (countnumber > 0) {
 				var arrLeft = [];
 				var arrTop = [];
+				var totalNo = 0;
 				var numCount = 0;
 				for (var j = 1; j <= countnumber; j++) {
-					if ($("#li_number" + j) != null) {
+					if ($("#li_number" + j).length != 0) {
 						arrLeft.push($("#li_number" + j).position().left);
 						arrTop.push($("#li_number" + j).position().top);
 						arrNumberMin.push(document.getElementById("bigNumQty" + numCount).min);
 						arrNumberMax.push(document.getElementById("bigNumQty" + numCount).max);
+						totalNo++;
 					}
 					numCount++;
 				}
+				document.getElementById("hfNumber").value = totalNo;
 				document.getElementById("hfNumberLeft").value = arrLeft;
 				document.getElementById("hfNumberTop").value = arrTop;
 				document.getElementById("hfNumberMin").value = arrNumberMin;
@@ -1153,15 +1171,18 @@
 			if (countdate > 0) {
 				var arrLeft = [];
 				var arrTop = [];
+				var totalNo = 0;
 				var numCount = 0;
 				for (var j = 1; j <= countdate; j++) {
-					if ($("#li_date" + j) != null) {
+					if ($("#li_date" + j).length != 0) {
 						arrDateLabel.push($("#date_id" + numCount).val());
 						arrLeft.push($("#li_date" + j).position().left);
 						arrTop.push($("#li_date" + j).position().top);
+						totalNo++;
 					}
 					numCount++;
 				}
+				document.getElementById("hfDate").value = totalNo;
 				document.getElementById("hfDateLabel").value = arrDateLabel;
 				document.getElementById("hfDateLeft").value = arrLeft;
 				document.getElementById("hfDateTop").value = arrTop;
@@ -1170,6 +1191,7 @@
 			if (countfile > 0) {
 				var arrLeft = [];
 				var arrTop = [];
+				var totalNo = 0;
 				for (var j = 1; j <= countfile; j++) {
 
 					arrLeft.push($("#li_file" + j).position().left);
@@ -1183,16 +1205,19 @@
 			if (countlabel > 0) {
 				var arrLeft = [];
 				var arrTop = [];
+				var totalNo = 0;
 				var numCount = 0;
 				for (var j = 1; j <= countlabel; j++) {
-					if ($("#li_label" + j) != null) {
+					if ($("#li_label" + j).length != 0) {
 						arrLabelTxt.push($("#labelID" + numCount).text());
 						arrLabelFontSize.push(parseInt($("#labelID" + numCount).css("fontSize")));
 						arrLeft.push($("#li_label" + j).position().left);
 						arrTop.push($("#li_label" + j).position().top);
+						totalNo++;
 					}
 					numCount++;
 				}
+				document.getElementById("hfLabel").value = totalNo;
 				document.getElementById("hfLabelLeft").value = arrLeft;
 				document.getElementById("hfLabelTop").value = arrTop;
 				document.getElementById("hfLabelText").value = arrLabelTxt;
@@ -1202,14 +1227,17 @@
 			if (countImage > 0) {
 				var arrLeft = [];
 				var arrTop = [];
+				var totalNo = 0;
 				var numCount = 0;
 				for (var j = 1; j <= countImage; j++) {
-					if ($("#li_image" + j) != null) {
+					if ($("#li_image" + j).length != 0) {
 						arrLeft.push($("#li_image" + j).position().left);
 						arrTop.push($("#li_image" + j).position().top);
+						totalNo++;
 					}
 					numCount++;
 				}
+				document.getElementById("hfImage").value = totalNo;
 				document.getElementById("hfImageLeft").value = arrLeft;
 				document.getElementById("hfImageTop").value = arrTop;
 			}
@@ -1552,7 +1580,7 @@
 					<div id="deletefield" class="delete">
 						Drag here to delete
 					</div>
-					<asp:FileUpload ID="imgupload" runat="server" style="display: none" onchange="showImage.call(this)"/>
+					<asp:FileUpload ID="imgupload" runat="server" Style="display: none" onchange="showImage.call(this)" />
 					<%--<input type="file" id="imgupload" style="display: none" onchange="showImage.call(this)" />--%>
 
 					<div>
@@ -1681,7 +1709,7 @@
 
 					<div class="close_select">+</div>
 
-                    Label
+					Label
 					<input type="text" id="changeLabelDDL" />
 					<input type="button" value="Change Label Name" onclick="changeDDLText()" />
 

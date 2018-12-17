@@ -130,7 +130,8 @@ namespace FYP_Form
 			if (eletypeList[i].name == "dropdown")
 			{
 				countDdl++;
-				html.Append("<select id='dropdown" + countDdl + "' class='item' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;'>");
+				int temp = countDdl - 1;
+				html.Append("<select id='dropdown" + countDdl + "' class='item' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;'><div id='ddllb" + temp + "'>" + eletypeList[i].label + "</div>");
 				for (int l = 0; l < eleListValueList.Count; l++)
 				{
 					html.Append("<option value='" + eleListValueList[l].value + "'>" + eleListValueList[l].name + "</option>");
@@ -254,7 +255,7 @@ namespace FYP_Form
 			public int eleListId { get; set; }
 			public int eleId { get; set; }
 			public string name { get; set; }
-			public int value { get; set; }
+			public string value { get; set; }
 		}
 
 		public void RetrieveEleListValue(int eleId)
@@ -273,7 +274,7 @@ namespace FYP_Form
 				eleListValue.eleListId = int.Parse(sdr["eleListId"].ToString());
 				eleListValue.eleId = int.Parse(sdr["eleId"].ToString());
 				eleListValue.name = sdr["name"].ToString();
-				eleListValue.value = int.Parse(sdr["value"].ToString());
+				eleListValue.value = sdr["value"].ToString();
 				eleListValueList.Add(eleListValue);
 			}
 			sqlConn.Close();

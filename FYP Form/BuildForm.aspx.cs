@@ -20,7 +20,6 @@ namespace FYP_Form
 
 		protected void btnInsert_Click(object sender, EventArgs e)
 		{
-
 			//StringBuilder htmlTxt = new StringBuilder();
 			int totalTxtNo = hfText.Value == "" ? 0 : Convert.ToInt32(hfText.Value);
 			int totalDdlNo = hfDrop.Value == "" ? 0 : Convert.ToInt32(hfDrop.Value);
@@ -208,7 +207,7 @@ namespace FYP_Form
 				}
 				else if (name == "dropdown")
 				{
-					int value = 0; 
+					string value = ""; 
 					string ddlName = "";
 					string[] arrDropLeft = hfDropLeft.Value.Split(',');
 					string[] arrDropTop = hfDropTop.Value.Split(',');
@@ -224,7 +223,7 @@ namespace FYP_Form
 					for (int j = 0; j < int.Parse(arrDdlCount[i - 1].ToString()); j++)
 					{
 						ddlName = arrDdlOption[numOfLoop];
-						value = int.Parse(arrDdlValue[numOfLoop]);
+						value = ddlName;
 						//insert into form ele list
 						InsertEleListValue(eleId, ddlName, value);
 						numOfLoop++;
@@ -232,7 +231,7 @@ namespace FYP_Form
 				}
 				else if (name == "radio")
 				{
-					int value = 0;
+					string value = "";
 					string rdName = "";
 					string[] arrRadioLeft = hfRadioLeft.Value.Split(',');
 					string[] arrRadioTop = hfRadioTop.Value.Split(',');
@@ -248,7 +247,7 @@ namespace FYP_Form
 					for (int j = 0; j < int.Parse(arrRadioCount[i - 1].ToString()); j++)
 					{
 						rdName = arrRadioOption[numOfLoop];
-						value = int.Parse(arrRadioValue[numOfLoop]);
+						value = rdName;
 						//insert into form ele list
 						InsertEleListValue(eleId, rdName, value);
 						numOfLoop++;
@@ -266,7 +265,7 @@ namespace FYP_Form
 				}
 				else if (name == "check")
 				{
-					int value = 0;
+					string value = "";
 					string checkName = "";
 					string[] arrCheckLeft = hfCheckLeft.Value.Split(',');
 					string[] arrCheckTop = hfCheckTop.Value.Split(',');
@@ -282,7 +281,7 @@ namespace FYP_Form
 					for (int j = 0; j < int.Parse(arrCheckCount[i - 1].ToString()); j++)
 					{
 						checkName = arrCheckOption[numOfLoop];
-						value = int.Parse(arrCheckValue[numOfLoop]);
+						value = checkName;
 						//insert into form ele list
 						InsertEleListValue(eleId, checkName, value);
 						numOfLoop++;
@@ -310,7 +309,7 @@ namespace FYP_Form
 				}
 				else if (name == "number")
 				{
-					int value = 0;
+					string value = "";
 					string[] arrNumberLeft = hfNumberLeft.Value.Split(',');
 					string[] arrNumberTop = hfNumberTop.Value.Split(',');
 					decimal tempNumberY = decimal.Parse(arrNumberTop[i - 1].ToString());
@@ -322,10 +321,10 @@ namespace FYP_Form
 					string[] arrNumberMin = hfNumberMin.Value.Split(',');
 					string[] arrNumberMax = hfNumberMax.Value.Split(',');
 					//insert min value
-					value = int.Parse(arrNumberMin[i-1].ToString());
+					value = arrNumberMin[i-1].ToString();
 					InsertEleListValue(eleId, name, value);
 					//insert max value
-					value = int.Parse(arrNumberMax[i-1].ToString());
+					value = arrNumberMax[i-1].ToString();
 					InsertEleListValue(eleId, name, value);
 						
 				}
@@ -409,7 +408,7 @@ namespace FYP_Form
 			sqlConn.Close();
 		}
 
-		public void InsertEleListValue(int eleId, string name, int value) //Insert new element list
+		public void InsertEleListValue(int eleId, string name, string value) //Insert new element list
 		{
 			string conn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 			SqlConnection sqlConn = new SqlConnection(conn);
