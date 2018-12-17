@@ -34,9 +34,9 @@ namespace FYP_Form
 			int totalLabelNo = hfLabel.Value == "" ? 0 : Convert.ToInt32(hfLabel.Value);
 			int totalImageNo = hfImage.Value == "" ? 0 : Convert.ToInt32(hfImage.Value);
 			//pass how many item has been created
-			GetElementType(totalTxtNo, totalDdlNo, totalRbNo, totalTxtAreaNo, totalCheckNo, totalHeaderNo, totalParagraphNo, totalNumberNo, totalDateNo, totalFileNo, totalLabelNo, totalImageNo);
-			Response.Write("<script>alert('Form created successful')</script>");
-			Response.Redirect("FormPage.aspx");
+			//GetElementType(totalTxtNo, totalDdlNo, totalRbNo, totalTxtAreaNo, totalCheckNo, totalHeaderNo, totalParagraphNo, totalNumberNo, totalDateNo, totalFileNo, totalLabelNo, totalImageNo);
+			//Response.Write("<script>alert('Form created successful')</script>");
+			//Response.Redirect("FormPage.aspx");
 		}
 
 		public void GetElementType(int totalTxtNo, int totalDdlNo, int totalRbNo, int totalTxtAreaNo, int totalCheckNo, int totalHeaderNo, int totalParagraphNo, int totalNumberNo, int totalDateNo, int totalFileNo, int totalLabelNo, int totalImageNo)

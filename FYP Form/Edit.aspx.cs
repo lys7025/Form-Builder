@@ -14,7 +14,7 @@ namespace FYP_Form
 {
 	public partial class Edit : System.Web.UI.Page
 	{
-		int id = 59;
+		int id = 0;
 		int eleId = 0;
 		int countNumber = 0;
 		int countDdl = 0;
@@ -32,38 +32,42 @@ namespace FYP_Form
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			//get the particular id when user click edit
-			//id = Convert.ToInt32(Request.QueryString["id"]);
-			//int id = 40;
-			RetrieveFormElement(id);// Retrieve form element
-			for (int i = 0; i < formEleList.Count; i++)
+			id = Convert.ToInt32(Request.QueryString["id"]);
+			if (!IsPostBack)
 			{
-				RetrieveEleType(formEleList[i].eleTypeId);
-
-				if (eletypeList != null)
+				//int id = 40;
+				RetrieveFormElement(id);// Retrieve form element
+				for (int i = 0; i < formEleList.Count; i++)
 				{
-					if (eletypeList[i].name == "dropdown")
+					RetrieveEleType(formEleList[i].eleTypeId);
+
+					if (eletypeList != null)
 					{
-						RetrieveEleListValue(formEleList[i].eleId);
-						displayEleListItem(i);
-					}
-					else if (eletypeList[i].name == "number")
-					{
-						RetrieveEleListValue(formEleList[i].eleId);
-						displayEleListItem(i);
-					}
-					else if (eletypeList[i].name == "check")
-					{
-						RetrieveEleListValue(formEleList[i].eleId);
-						displayEleListItem(i);
-					}
-					else if (eletypeList[i].name == "radio")
-					{
-						RetrieveEleListValue(formEleList[i].eleId);
-						displayEleListItem(i);
+						if (eletypeList[i].name == "dropdown")
+						{
+							RetrieveEleListValue(formEleList[i].eleId);
+							displayEleListItem(i);
+						}
+						else if (eletypeList[i].name == "number")
+						{
+							RetrieveEleListValue(formEleList[i].eleId);
+							displayEleListItem(i);
+						}
+						else if (eletypeList[i].name == "check")
+						{
+							RetrieveEleListValue(formEleList[i].eleId);
+							displayEleListItem(i);
+						}
+						else if (eletypeList[i].name == "radio")
+						{
+							RetrieveEleListValue(formEleList[i].eleId);
+							displayEleListItem(i);
+						}
 					}
 				}
+				displayEleItem();
 			}
-			displayEleItem();
+			
 		}
 
 		public void displayEleItem()
@@ -151,17 +155,17 @@ namespace FYP_Form
 					html.Append("<div id ='li_image" + countImage + "' class='form_bal_image1' ondrag='maintainDrag()' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><i class='fa fa-arrows-alt' style='float:right;'></i> <img src ='ShowImage.ashx?id=" + formEleList[i].eleTypeId + "' onclick='changeImage(this.id)' style='width: 150px; height: 150px' id='image" + temp + "'/></div>");
 				}
 			}
-			hfTextLabel.Value = string.Join(",", arrTxtLabel);
-			hfTextareaLabel.Value = string.Join(",", arrTextareaLabel);
-			hfHeaderLabel.Value = string.Join(",", arrHeaderLabel);
-			hfHeaderFontFami.Value = string.Join(",", arrHeaderFontFami);
-			hfHeaderFontSize.Value = string.Join(",", arrHeaderFontSize);
-			hfParagraphLabel.Value = string.Join(",", arrParaLabel);
-			hfParagraphFontType.Value = string.Join(",", arrParaFontType);
-			hfParagraphFontColor.Value = string.Join(",", arrParaFontColor);
-			hfDateLabel.Value = string.Join(",", arrDateLabel);
-			hfLabelText.Value = string.Join(",", arrLabelText);
-			hfLabelFontSize.Value = string.Join(",", arrLabelFontSize);
+			//hfTextLabel.Value = string.Join(",", arrTxtLabel);
+			//hfTextareaLabel.Value = string.Join(",", arrTextareaLabel);
+			//hfHeaderLabel.Value = string.Join(",", arrHeaderLabel);
+			//hfHeaderFontFami.Value = string.Join(",", arrHeaderFontFami);
+			//hfHeaderFontSize.Value = string.Join(",", arrHeaderFontSize);
+			//hfParagraphLabel.Value = string.Join(",", arrParaLabel);
+			//hfParagraphFontType.Value = string.Join(",", arrParaFontType);
+			//hfParagraphFontColor.Value = string.Join(",", arrParaFontColor);
+			//hfDateLabel.Value = string.Join(",", arrDateLabel);
+			//hfLabelText.Value = string.Join(",", arrLabelText);
+			//hfLabelFontSize.Value = string.Join(",", arrLabelFontSize);
 			hfText.Value = countTxt.ToString();
 			hfTextarea.Value = countTxtArea.ToString();
 			hfHeader.Value = countHeader.ToString();
@@ -200,6 +204,7 @@ namespace FYP_Form
 					arrDdlValue.Add(eleListValueList[l].value);
 				}
 				html.Append("</select><a href='#' id='btneditDDL" + temp + "' class='button' onclick='btnclick(this.id)'> Add </a> <a href='#' id='removeDDL" + temp + "' onclick='removeSelect(this.id)'> Remove selected option </a></div>");
+
 				arrDdlLabel.Add(eletypeList[i].label);
 			}
 			else if (eletypeList[i].name == "number")
@@ -252,18 +257,18 @@ namespace FYP_Form
 				
 				arrCheckLabel.Add(eletypeList[i].label);
 			}
-
-			hfDropLabel.Value = string.Join(",", arrDdlLabel);
-			hfDropOption.Value = string.Join(",", arrDdlOption);
-			hfDropValue.Value = string.Join(",", arrDdlValue);
-			hfCheckLabel.Value = string.Join(",", arrCheckLabel);
-			hfCheckOption.Value = string.Join(",", arrCheckOption);
-			hfCheckValue.Value = string.Join(",", arrCheckValue);
-			hfRadioLabel.Value = string.Join(",", arrRadioLabel);
-			hfRadioOption.Value = string.Join(",", arrRadioOption);
-			hfRadioValue.Value = string.Join(",", arrRadioValue);
-			hfNumberMin.Value = string.Join(",", arrNumberMin);
-			hfNumberMax.Value = string.Join(",", arrNumberMax);
+			//Response.Write("<script>alert('" + arrDdlOption[1] + "')</script>");
+			//hfDropLabel.Value += string.Join(",", arrDdlLabel);
+			//hfDropOption.Value += string.Join(",", arrDdlOption);
+			//hfDropValue.Value += string.Join(",", arrDdlValue);
+			//hfCheckLabel.Value += string.Join(",", arrCheckLabel);
+			//hfCheckOption.Value += string.Join(",", arrCheckOption);
+			//hfCheckValue.Value += string.Join(",", arrCheckValue);
+			//hfRadioLabel.Value += string.Join(",", arrRadioLabel);
+			//hfRadioOption.Value += string.Join(",", arrRadioOption);
+			//hfRadioValue.Value += string.Join(",", arrRadioValue);
+			//hfNumberMin.Value += string.Join(",", arrNumberMin);
+			//hfNumberMax.Value += string.Join(",", arrNumberMax);
 			hfDrop.Value = countDdl.ToString();
 			hfNumber.Value = countNumber.ToString();
 			hfRadio.Value = countRb.ToString();
@@ -402,43 +407,42 @@ namespace FYP_Form
 
 		protected void btnInsert_Click(object sender, EventArgs e)
 		{
-			string[] arrDdlOption = hfCheckOption.Value.Split(',');
-			Response.Write("<script>alert('"+ arrDdlOption[0].ToString() + "')</script>");
-			//RetrieveForm();
-			//int staffId = int.Parse(Session["staffId"].ToString());
-			//string status = "active";
-			//version += 1;
+			RetrieveForm();
+			int staffId = int.Parse(Session["staffId"].ToString());
+			string status = "active";
+			version += 1;
 
-			//string conn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-			//SqlConnection sqlConn = new SqlConnection(conn);
-			//sqlConn.Open();
-			//string insertForm = "INSERT INTO Form Values (@title, @staffId, @date, @version, @status)SELECT SCOPE_IDENTITY()";
+			string conn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+			SqlConnection sqlConn = new SqlConnection(conn);
+			sqlConn.Open();
+			string insertForm = "INSERT INTO Form Values (@title, @staffId, @date, @version, @status)SELECT SCOPE_IDENTITY()";
 
-			//SqlCommand cmdInsertForm = new SqlCommand(insertForm, sqlConn);
-			//cmdInsertForm.Parameters.AddWithValue("@title", title);
-			//cmdInsertForm.Parameters.AddWithValue("@staffId", staffId);
-			//cmdInsertForm.Parameters.AddWithValue("@date", DateTime.Today);
-			//cmdInsertForm.Parameters.AddWithValue("@version", version);
-			//cmdInsertForm.Parameters.AddWithValue("@status", status);
+			SqlCommand cmdInsertForm = new SqlCommand(insertForm, sqlConn);
+			cmdInsertForm.Parameters.AddWithValue("@title", title);
+			cmdInsertForm.Parameters.AddWithValue("@staffId", staffId);
+			cmdInsertForm.Parameters.AddWithValue("@date", DateTime.Today);
+			cmdInsertForm.Parameters.AddWithValue("@version", version);
+			cmdInsertForm.Parameters.AddWithValue("@status", status);
 
-			//Session["FormId"] = Convert.ToInt32(cmdInsertForm.ExecuteScalar());
-			//sqlConn.Close();
+			Session["FormId"] = Convert.ToInt32(cmdInsertForm.ExecuteScalar());
+			sqlConn.Close();
 
-			//int totalTxtNo = hfText.Value == "" ? 0 : Convert.ToInt32(hfText.Value);
-			//int totalDdlNo = hfDrop.Value == "" ? 0 : Convert.ToInt32(hfDrop.Value);
-			//int totalRbNo = hfRadio.Value == "" ? 0 : Convert.ToInt32(hfRadio.Value);
-			//int totalTxtAreaNo = hfTextarea.Value == "" ? 0 : Convert.ToInt32(hfTextarea.Value);
-			//int totalCheckNo = hfCheck.Value == "" ? 0 : Convert.ToInt32(hfCheck.Value);
-			//int totalHeaderNo = hfHeader.Value == "" ? 0 : Convert.ToInt32(hfHeader.Value);
-			//int totalParagraphNo = hfParagraph.Value == "" ? 0 : Convert.ToInt32(hfParagraph.Value);
-			//int totalNumberNo = hfNumber.Value == "" ? 0 : Convert.ToInt32(hfNumber.Value);
-			//int totalDateNo = hfDate.Value == "" ? 0 : Convert.ToInt32(hfDate.Value);
-			//int totalFileNo = hfFile.Value == "" ? 0 : Convert.ToInt32(hfFile.Value);
-			//int totalLabelNo = hfLabel.Value == "" ? 0 : Convert.ToInt32(hfLabel.Value);
-			//int totalImageNo = hfImage.Value == "" ? 0 : Convert.ToInt32(hfImage.Value);
-			////pass how many item has been created
-			//GetElementType(totalTxtNo, totalDdlNo, totalRbNo, totalTxtAreaNo, totalCheckNo, totalHeaderNo, totalParagraphNo, totalNumberNo, totalDateNo, totalFileNo, totalLabelNo, totalImageNo);
-			//Response.Write("<script>alert('Form created successful')</script>");
+			int totalTxtNo = hfText.Value == "" ? 0 : Convert.ToInt32(hfText.Value);
+			int totalDdlNo = hfDrop.Value == "" ? 0 : int.Parse(hfDrop.Value);
+			int totalRbNo = hfRadio.Value == "" ? 0 : Convert.ToInt32(hfRadio.Value);
+			int totalTxtAreaNo = hfTextarea.Value == "" ? 0 : Convert.ToInt32(hfTextarea.Value);
+			int totalCheckNo = hfCheck.Value == "" ? 0 : Convert.ToInt32(hfCheck.Value);
+			int totalHeaderNo = hfHeader.Value == "" ? 0 : Convert.ToInt32(hfHeader.Value);
+			int totalParagraphNo = hfParagraph.Value == "" ? 0 : Convert.ToInt32(hfParagraph.Value);
+			int totalNumberNo = hfNumber.Value == "" ? 0 : Convert.ToInt32(hfNumber.Value);
+			int totalDateNo = hfDate.Value == "" ? 0 : Convert.ToInt32(hfDate.Value);
+			int totalFileNo = hfFile.Value == "" ? 0 : Convert.ToInt32(hfFile.Value);
+			int totalLabelNo = hfLabel.Value == "" ? 0 : Convert.ToInt32(hfLabel.Value);
+			int totalImageNo = hfImage.Value == "" ? 0 : Convert.ToInt32(hfImage.Value);
+			//pass how many item has been created
+			GetElementType(totalTxtNo, totalDdlNo, totalRbNo, totalTxtAreaNo, totalCheckNo, totalHeaderNo, totalParagraphNo, totalNumberNo, totalDateNo, totalFileNo, totalLabelNo, totalImageNo);
+			Response.Write("<script>alert('New Version Created')</script>");
+			Response.Redirect("FormPage.aspx");
 		}
 
 		public void GetElementType(int totalTxtNo, int totalDdlNo, int totalRbNo, int totalTxtAreaNo, int totalCheckNo, int totalHeaderNo, int totalParagraphNo, int totalNumberNo, int totalDateNo, int totalFileNo, int totalLabelNo, int totalImageNo)
