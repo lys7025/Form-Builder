@@ -154,17 +154,8 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\FormBuilder\bootstrap.min.js" />
     <Content Include="Scripts\FormBuilder\drag_drop.js" />
-    <Content Include="Scripts\FormBuilder\form_builder.js" />
     <Content Include="Scripts\FormBuilder\jquery-ui.min.js" />
     <Content Include="Scripts\FormBuilder\jquery.min.js" />
-    <Content Include="Scripts\FormBuilder\main-built.js" />
-    <Content Include="Scripts\FormBuilder\my-form-snippet.js" />
-    <Content Include="Scripts\FormBuilder\my-form.js" />
-    <Content Include="Scripts\FormBuilder\require.js" />
-    <Content Include="Scripts\FormBuilder\snippet.js" />
-    <Content Include="Scripts\FormBuilder\tab-snippet.js" />
-    <Content Include="Scripts\FormBuilder\tab.js" />
-    <Content Include="Scripts\FormBuilder\temp-snippet.js" />
     <Content Include="Scripts\FormBuilder\test.js" />
     <Content Include="Scripts\FormBuilder\tether.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

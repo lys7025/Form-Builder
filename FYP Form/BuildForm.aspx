@@ -24,11 +24,13 @@
 			padding: 10px;
 		}
 
+
+
 	.bg-modal {
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -83,6 +85,7 @@
 		background-color: white;
 		border-radius: 4px;
 		position: relative;
+        padding:20px
 	}
 
 	.close {
@@ -97,7 +100,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -118,7 +121,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -139,7 +142,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -160,7 +163,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -181,7 +184,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -202,7 +205,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -223,7 +226,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -244,7 +247,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -524,9 +527,10 @@
 		var opt = document.createElement("option");
 
 		opt.text = document.getElementById("getSelectText").value;
-		opt.value = document.getElementById("getSelectValue").value;
+		//opt.value = document.getElementById("getSelectValue").value;
+        opt.value = opt.text;
 
-		if (opt.text == "" || opt.value == "") {
+		if (opt.text == "" ) {
 			alert("Please fill in the blank");
 		} else {
 			sel.add(opt);
@@ -577,8 +581,9 @@
 
 	function addRadio() {
 
-		var val = document.getElementById("addRadioValue").value;
-		var text = document.getElementById("addRadioText").value;
+		//var val = document.getElementById("addRadioValue").value;
+        var text = document.getElementById("addRadioText").value;
+        var val = text;
 		var divRB = document.getElementById("divRadio" + getint);
 		var name = "radioName" + getint;
 
@@ -628,8 +633,9 @@
 
 	function addCheck() {
 
-		var val = document.getElementById("addCheckValue").value;
-		var text = document.getElementById("addCheckText").value;
+		//var val = document.getElementById("addCheckValue").value;
+        var text = document.getElementById("addCheckText").value;
+        var val = text;
 		var divCheck = document.getElementById("divCheck" + getint);
 		var name = "CheckBoxName" + getint;
 
@@ -1384,7 +1390,8 @@
 
 		function getUploadFile(event) {
 
-			return ' <div id="li_file' + countfile + '" class="form_bal_file1" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i> <input type="file" id="myFile' + countfile + '" multiple size="50" onchange=""> </div>'
+            
+			return ' <div id="li_file' + countfile + '" class="form_bal_file1" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i> <input type="file" id="myFile' + countfile + '" multiple size="50" disabled="disabled" onchange=""> </div>'
 		}
 
 		function getLabel(event) {
@@ -1526,6 +1533,7 @@
 						</nav>
 					</div>
 
+             
 
 
 					<div id="container" class="ui-widget-content">
@@ -1681,8 +1689,8 @@
 					<div id="select-option">
 						Text 
 						<input type="text" id="getSelectText" />
-						Value
-						<input type="text" id="getSelectValue" />
+						<%--Value
+						<input type="text" id="getSelectValue" />--%>
 
 					</div>
 
@@ -1743,8 +1751,8 @@
 					Radio Text 
 					<input type="text" id="addRadioText" />
 					<br />
-					Radio Value 
-					<input type="text" id="addRadioValue" />
+					<%--Radio Value 
+					<input type="text" id="addRadioValue" />--%>
 					<br />
 					<input type="button" value="Add Radio" onclick="addRadio()" />
 
@@ -1812,8 +1820,8 @@
 					Check Text 
 					<input type="text" id="addCheckText" />
 					<br />
-					Check Value 
-					<input type="text" id="addCheckValue" />
+					<%--Check Value 
+					<input type="text" id="addCheckValue" />--%>
 					<br />
 					<input type="button" value="Add Check" onclick="addCheck()" />
 

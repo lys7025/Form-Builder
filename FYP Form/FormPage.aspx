@@ -11,6 +11,30 @@
 		}
 	</script>
 
+    <style type="text/css">
+
+
+        table {
+            width:400px;
+            
+        }
+        th{
+            text-align:left;
+        }
+
+        table,th,td{
+            border:1px solid #000;
+            border-collapse:collapse;
+        }
+         th,td{
+             padding:10px;
+         }
+
+
+        
+
+    </style>
+
 	<h2>Form Page</h2>
 
 	<p>
