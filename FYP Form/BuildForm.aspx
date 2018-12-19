@@ -736,90 +736,90 @@
 
 			cursor: 'move',
 			revert: 'invalid',
-			stop: function () {
-				$(this).draggable('option', 'revert', 'invalid');
-			}
+			//stop: function () {
+			//	$(this).draggable('option', 'revert', 'invalid');
+			//}
 		});
 
 		$(".form_bal_ddl1").draggable({
 
 			cursor: 'move',
 			revert: 'invalid',
-			stop: function () {
-				$(this).draggable('option', 'revert', 'invalid');
-			}
+			//stop: function () {
+			//	$(this).draggable('option', 'revert', 'invalid');
+			//}
 		});
 
 		$(".form_bal_radio1").draggable({
 
 			cursor: 'move',
 			revert: 'invalid',
-			stop: function () {
-				$(this).draggable('option', 'revert', 'invalid');
-			}
+			//stop: function () {
+			//	$(this).draggable('option', 'revert', 'invalid');
+			//}
 		});
 
 		$(".form_bal_checkbox1").draggable({
 
 			cursor: 'move',
 			revert: 'invalid',
-			stop: function () {
-				$(this).draggable('option', 'revert', 'invalid');
-			}
+			//stop: function () {
+			//	$(this).draggable('option', 'revert', 'invalid');
+			//}
 		});
 
 		$(".form_bal_header1").draggable({
 
 			cursor: 'move',
 			revert: 'invalid',
-			stop: function () {
-				$(this).draggable('option', 'revert', 'invalid');
-			}
+			//stop: function () {
+			//	$(this).draggable('option', 'revert', 'invalid');
+			//}
 		});
 
 		$(".form_bal_paragraph1").draggable({
 
 			cursor: 'move',
 			revert: 'invalid',
-			stop: function () {
-				$(this).draggable('option', 'revert', 'invalid');
-			}
+			//stop: function () {
+			//	$(this).draggable('option', 'revert', 'invalid');
+			//}
 		});
 
 		$(".form_bal_number1").draggable({
 
 			cursor: 'move',
 			revert: 'invalid',
-			stop: function () {
-				$(this).draggable('option', 'revert', 'invalid');
-			}
+			//stop: function () {
+			//	$(this).draggable('option', 'revert', 'invalid');
+			//}
 		});
 
 		$(".form_bal_date1").draggable({
 
 			cursor: 'move',
 			revert: 'invalid',
-			stop: function () {
-				$(this).draggable('option', 'revert', 'invalid');
-			}
+			//stop: function () {
+			//	$(this).draggable('option', 'revert', 'invalid');
+			//}
 		});
 
 		$(".form_bal_label1").draggable({
 
 			cursor: 'move',
 			revert: 'invalid',
-			stop: function () {
-				$(this).draggable('option', 'revert', 'invalid');
-			}
+			//stop: function () {
+			//	$(this).draggable('option', 'revert', 'invalid');
+			//}
 		});
 
 		$(".form_bal_image1").draggable({
 
 			cursor: 'move',
 			revert: 'invalid',
-			stop: function () {
-				$(this).draggable('option', 'revert', 'invalid');
-			}
+			//stop: function () {
+			//	$(this).draggable('option', 'revert', 'invalid');
+			//}
 		});
 
 	}
