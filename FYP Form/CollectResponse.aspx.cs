@@ -111,12 +111,12 @@ namespace FYP_Form
 				else if (eletypeList[i].name == "date")
 				{
 					countDate++;
-					html.Append("<div id ='li_date' style='left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' > Date<input type='date' value='" + eletypeList[i].label + "' readonly='readonly' id='date_id" + countDate + "' ></div>");
+					html.Append("<div id ='li_date' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' > Date<input type='date' value='" + eletypeList[i].label + "' readonly='readonly' id='date_id" + countDate + "' ></div>");
 				}
 				else if (eletypeList[i].name == "file")
 				{
 					countFile++;
-					html.Append("<div id ='li_file' style='left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' > <input type='file' id='myFile" + i + 1 + "' multiple size='50' readonly='readonly'></div>");
+					html.Append("<div id ='li_file' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' > <input type='file' id='myFile" + i + 1 + "' multiple size='50' readonly='readonly'></div>");
 				}
 				else if (eletypeList[i].name == "label")
 				{
@@ -144,14 +144,14 @@ namespace FYP_Form
 			{
 				countDdl++;
 				int temp = countDdl - 1;
-				html.Append("<select id='dropdown" + countDdl + "' class='item' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;'><div id='ddllb" + temp + "'>" + eletypeList[i].label + "</div>");
-				for (int l = 0; l < eleListValueList.Count; l++)
-				{
-					html.Append("<option value='" + eleListValueList[l].value + "'>" + eleListValueList[l].name + "</option>");
-				}
-				html.Append("</select>");
-				//arrColName.Add(eletypeList[i].label);
-				arrColName.Add(eletypeList[i].label);
+                html.Append("<div id ='li_ddl" + countDdl + "' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><div id='ddllb" + temp + "'>" + eletypeList[i].label + "</div><select id='mySelect" + countDdl + "'>");
+                for (int l = 0; l < eleListValueList.Count; l++)
+                {
+                    html.Append("<option value='" + eleListValueList[l].value + "'>" + eleListValueList[l].name + "</option>");
+                }
+                html.Append("</select></div>");
+                //arrColName.Add(eletypeList[i].label);
+                arrColName.Add(eletypeList[i].label);
 			}
 			else if (eletypeList[i].name == "number")
 			{
@@ -173,7 +173,7 @@ namespace FYP_Form
 			{
 				countRb++;
 				int temp = countRb - 1;
-				html.Append("<div id ='li_rb" + countRb + "' class='form_bal_radio1' ondrag='maintainDrag()' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><div id='rblb" + temp + "' > " + eletypeList[i].label + " </div><div id='divRadio" + countRb + "'> ");
+				html.Append("<div id ='li_rb" + countRb + "' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><div id='rblb" + temp + "' > " + eletypeList[i].label + " </div><div id='divRadio" + countRb + "'> ");
 				for (int l = 0; l < eleListValueList.Count; l++)
 				{
 					html.Append("<div id ='childRB" + countChildRadio + "' name='radioChildName" + temp + "'><input type = 'radio' id ='rbID" + countChildRadio + "' name ='radioName" + temp + "' value = '" + eleListValueList[l].value + "' />" + eleListValueList[l].name + "</div>");
@@ -186,7 +186,7 @@ namespace FYP_Form
 			{
 				countCheck++;
 				int temp = countCheck - 1;
-				html.Append("<div id ='li_checkbox" + countCheck + "' class='form_bal_checkbox1' ondrag='maintainDrag()' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><div id = 'checklb" + temp + "' > " + eletypeList[i].label + " </div><div id='divCheck" + temp + "'>");
+				html.Append("<div id ='li_checkbox" + countCheck + "' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><div id = 'checklb" + temp + "' > " + eletypeList[i].label + " </div><div id='divCheck" + temp + "'>");
 				for (int l = 0; l < eleListValueList.Count; l++)
 				{
 					html.Append("<div id = 'childCheck" + countChildCheck + "' name='checkChildName" + temp + "' ><input type = 'checkbox' id = 'checkID" + countChildCheck + "' name = 'CheckBoxName" + temp + "' value = '" + eleListValueList[l].value + "' />" + eleListValueList[l].name + "</div>");
@@ -275,7 +275,7 @@ namespace FYP_Form
 			public int eleListId { get; set; }
 			public int eleId { get; set; }
 			public string name { get; set; }
-			public int value { get; set; }
+			public string value { get; set; }
 		}
 
 		public void RetrieveEleListValue(int eleId)
@@ -294,7 +294,7 @@ namespace FYP_Form
 				eleListValue.eleListId = int.Parse(sdr["eleListId"].ToString());
 				eleListValue.eleId = int.Parse(sdr["eleId"].ToString());
 				eleListValue.name = sdr["name"].ToString();
-				eleListValue.value = int.Parse(sdr["value"].ToString());
+				eleListValue.value = sdr["value"].ToString();
 				eleListValueList.Add(eleListValue);
 			}
 			sqlConn.Close();
@@ -399,7 +399,7 @@ namespace FYP_Form
 			SqlCommand cmdInsertRecord = new SqlCommand(insertRecord, sqlConn);
 			for (int i = 0; i < total; i++)//use loop to insert the record 1 by 1
 			{
-				cmdInsertRecord.Parameters.AddWithValue("@" + arrColName[i].ToString() + "", response[i].ToString());
+				cmdInsertRecord.Parameters.AddWithValue("@" + arrColName[i].ToString(), response[i].ToString());
 			}
 			cmdInsertRecord.ExecuteNonQuery();
 			sqlConn.Close();
@@ -423,6 +423,7 @@ namespace FYP_Form
 					string[] arrDrop = hfDropArr.Value.Split(',');
 					arrResponse.Add(arrDrop[countDrop].ToString());
 					countDrop++;
+
 				}
 				else if (eletypeList[i].name == "number")
 				{
@@ -474,8 +475,8 @@ namespace FYP_Form
 					countText++;
 				}
 			}
-			InsertRecord(arrResponse);
-		}
+            InsertRecord(arrResponse);
+        }
 
 		public void InsertMapping()
 		{
@@ -514,8 +515,8 @@ namespace FYP_Form
 			else
 			{
 				GetResponse(total);
-				InsertMapping();
-				Response.Write("<script>alert('Your response is submitted')</script>");
+                InsertMapping();
+                Response.Write("<script>alert('Your response is submitted')</script>");
 			}
 			//string url = HttpContext.Current.Request.Url.AbsoluteUri;
 			////txtLink.Text = url;
