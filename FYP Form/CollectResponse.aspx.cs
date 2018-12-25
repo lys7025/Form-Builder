@@ -519,8 +519,6 @@ namespace FYP_Form
                 Response.Write("<script>alert('Your response is submitted')</script>");
 			}
 			//string url = HttpContext.Current.Request.Url.AbsoluteUri;
-			////txtLink.Text = url;
-			////InsertMapping();
 			//Response.Write("<script>alert('" + exist + "')</script>");
 			//ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup();", true);
 		}
