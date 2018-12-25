@@ -31,20 +31,28 @@ namespace FYP_Form
 			cmdRetrieveStaff.Parameters.AddWithValue("@password", password);
 			SqlDataReader sdr = cmdRetrieveStaff.ExecuteReader();
 
-			if (sdr == null || !sdr.HasRows)
-			{
-				Response.Write("<script>alert('Wrong username or password')</script>");
-			}
-			else
-			{
-				while (sdr.Read())
-				{
-					Session["staffId"] = int.Parse(sdr["staffId"].ToString());
-				}
-				sqlConn.Close();
-				Response.Write("<script>alert('Login successful')</script>");
-				Response.Redirect("/FormPage.aspx");
-			}
+            if(UserName.Text == "" || Password.Text == "") {
+
+                Response.Write("<script>alert('Cannot be blank')</script>");
+
+			    
+             } else
+                {
+                if (sdr == null || !sdr.HasRows)
+			    {
+				    Response.Write("<script>alert('Wrong username or password')</script>");
+			    }
+			    else
+			    {
+				    while (sdr.Read())
+				    {
+					    Session["staffId"] = int.Parse(sdr["staffId"].ToString());
+				    }
+				    sqlConn.Close();
+				    Response.Write("<script>alert('Login successful')</script>");
+				    Response.Redirect("/FormPage.aspx");
+			    }
+                }
 		}
 	}
 }

@@ -52,6 +52,21 @@
 		color: white
 	}
 
+    #btnBack {
+		height: 80px;
+		position: fixed;
+		bottom: 350px;
+		right: 0;
+        width:200px;
+        background-color:grey;
+		color: black;
+		font-size: 22px;
+		font-family: Calibri;
+		border-bottom: 3px solid #925b08;
+		border: none;
+		border-radius: 5px;
+	}
+
 	.divInsert {
 		height: 50px;
 		position: fixed;
@@ -706,7 +721,17 @@
 			}
 			obj.readAsDataURL(this.files[0]);
 		}
-	}
+    }
+    function cancelPage() {
+
+        if (confirm('Are you sure you want Cancel? the Changes will not be save')) {
+            document.location.href = 'FormPage';
+    
+        } else {
+    // Do nothing!
+            }
+
+    }
 
 	function maintainDrag() {
 
@@ -1583,6 +1608,11 @@
 					<div id="deletefield" class="delete">
 						Drag here to delete
 					</div>
+
+                    <div id="cancelPage" class="back">
+                        <input id="btnBack" type="button" value="Cancel" onclick="cancelPage()" />
+                    </div>
+
 					<asp:FileUpload ID="imgupload" runat="server" Style="display: none" onchange="showImage.call(this)" />
 					<%--<input type="file" id="imgupload" style="display: none" onchange="showImage.call(this)" />--%>
 
@@ -1716,7 +1746,9 @@
 					<input type="text" id="changeLabelDDL" />
 					<input type="button" value="Change Label Name" onclick="changeDDLText()" />
 
-
+                    <br />
+                    ------------------------------------------------------------------------------------------
+                    <br />
 					<div id="select-option">
 						Text 
 						<input type="text" id="getSelectText" />
@@ -1725,7 +1757,7 @@
 
 					</div>
 
-					<input style="bottom: 0; right: 0; position: absolute" type="button" value="Add" onclick="addSelectValue()" />
+					<input type="button" value="Add" onclick="addSelectValue()" />
 				</div>
 			</div>
 
@@ -1736,6 +1768,8 @@
 
 					Label 
 					<input type="text" id="changeLabelHeader" />
+                    <br />
+                    Font Family
 					<select id="SelectFontFamily" style="width: 180px; height: 23px">
 
 						<option value="Algerian" style="font-family: Algerian;">Algerian</option>
@@ -1745,6 +1779,7 @@
 						<option value="Arial" style="font-family: Arial;">Arial</option>
 					</select>
 					<br />
+                    Font Size
 					<select id="SelectFontSize" style="width: 180px; height: 23px">
 
 						<option value="12">12</option>
@@ -1763,6 +1798,7 @@
 						<option value="78">78</option>
 						<option value="88">88</option>
 					</select>
+                    <br />
 
 					<input type="button" value="save" onclick="changeHeader()" />
 
@@ -1778,6 +1814,8 @@
 					<input type="text" id="changeLabelRadio" />
 					<input type="button" value="Change Label Name" onclick="changeRadioText()" />
 					<br />
+                    ------------------------------------------------------------------------------------------
+                    <br />
 
 					Radio Text 
 					<input type="text" id="addRadioText" />
@@ -1816,6 +1854,7 @@
 					<input type="radio" name="parafontstyle" value="italic">
 					italic
 					
+                    <br />
 					<input type="button" value="save" onclick="changePara()" />
 
 				</div>
@@ -1847,6 +1886,9 @@
 					<input type="text" id="changeLabelCheck" />
 					<input type="button" value="Change Label Name" onclick="changeCheckText()" />
 					<br />
+                    <br />
+                    ------------------------------------------------------------------------------------------
+                    <br />
 
 					Check Text 
 					<input type="text" id="addCheckText" />
@@ -1868,6 +1910,7 @@
 					<input type="text" id="changeLabelValue" />
 
 					<br />
+                    Font Size
 					<select id="SelectFontSizeLabel" style="width: 180px; height: 23px">
 
 						<option value="12">12</option>
