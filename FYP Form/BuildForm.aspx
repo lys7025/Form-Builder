@@ -510,7 +510,10 @@
 		var min = document.getElementById("changeMinNumber").value;
 		var max = document.getElementById("changeMaxNumber").value;
 
-		if (min > max) {
+
+      
+
+		if (parseInt(min) > parseInt(max)) {
 			alert("Please make sure the min is less than Max");
 
 		} else {
@@ -1404,7 +1407,7 @@
 
 		function getParagraph(event) {
 
-			return ' <div id="li_paragraph' + countparagraph + '" class="form_bal_paragraph1" ondrag="maintainDrag()" style="max-width:450px;" > <i class="fa fa-arrows-alt" style="float:right"></i> <br /><p id="para_id' + countparagraph + '" > write something here </p> <a href="#" id="btneditpara' + countparagraph + '" class="button" onclick="btnclick(this.id)" > edit </a> </div>'
+			return ' <div id="li_paragraph' + countparagraph + '" class="form_bal_paragraph1" style="word-wrap:break-word;width:500px" ondrag="maintainDrag()" style="max-width:450px;" > <i class="fa fa-arrows-alt" style="float:right"></i> <br /><p id="para_id' + countparagraph + '" > write something here </p> <a href="#" id="btneditpara' + countparagraph + '" class="button" onclick="btnclick(this.id)" > edit </a> </div>'
 		}
 		function getBigNumber(event) {
 
