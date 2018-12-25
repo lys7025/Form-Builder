@@ -14,14 +14,15 @@
 			width: 800px;
 			height: 1000px;
 			background: #dbdddd;
-			margin-left: 130px;
+			margin-left: 160px;
 		}
 
 			#container > div {
 				width: 100px;
 				height: 100px;
 				padding: 10px;
-				margin-left: 100px;
+                margin-top: 50px;
+				margin-left: 80px;
 			}
 
 		#close {

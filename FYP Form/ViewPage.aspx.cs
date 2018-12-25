@@ -24,9 +24,9 @@ namespace FYP_Form
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			//get the particular id when user click edit
-			id = Convert.ToInt32(Request.QueryString["id"]);
-			Session["viewFormId"] = id.ToString();
+            //get the particular id when user click edit
+            id = Convert.ToInt32(Request.QueryString["id"]);
+            Session["viewFormId"] = id.ToString();
 			//int id = 32;
 			RetrieveFormElement(id);// Retrieve form element
 			for (int i = 0; i < formEleList.Count; i++)
@@ -131,21 +131,22 @@ namespace FYP_Form
 			{
 				countDdl++;
 				int temp = countDdl - 1;
-				html.Append("<select id='dropdown" + countDdl + "' class='item' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;'><div id='ddllb" + temp + "'>" + eletypeList[i].label + "</div>");
+                html.Append("<div id ='li_ddl" + countDdl + "' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><div id='ddllb" + temp + "'>" + eletypeList[i].label + "</div><select id='mySelect" + temp + "'>");
 				for (int l = 0; l < eleListValueList.Count; l++)
 				{
 					html.Append("<option value='" + eleListValueList[l].value + "'>" + eleListValueList[l].name + "</option>");
 				}
-				html.Append("</select>");
+				html.Append("</select></div>");
 			}
 			else if (eletypeList[i].name == "number")
 			{
 				countNumber++;
-				for (int l = 0; l < eleListValueList.Count; l++)
+                int temp = countNumber - 1;
+                for (int l = 0; l < eleListValueList.Count; l++)
 				{
 					if (l == 0)
 					{
-						html.Append("<div id ='li_number' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' >Quantity<input class='item' id='number" + countNumber + "' type='number' style='left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' min='" + eleListValueList[l].value + "'");
+						html.Append("<div id ='li_number" + countNumber + "' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' >Quantity<input class='item' id='bigNumQty" + temp + "' type='number' style='left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' min='" + eleListValueList[l].value + "'");
 					}
 					else
 					{
@@ -158,7 +159,7 @@ namespace FYP_Form
 			{
 				countRb++;
 				int temp = countRb - 1;
-				html.Append("<div id ='li_rb" + countRb + "' class='form_bal_radio1' ondrag='maintainDrag()' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><div id='rblb" + temp + "' > " + eletypeList[i].label + " </div><div id='divRadio" + countRb + "'> ");
+				html.Append("<div id ='li_rb" + countRb + "' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><div id='rblb" + temp + "' > " + eletypeList[i].label + " </div><div id='divRadio" + countRb + "'> ");
 				for (int l = 0; l < eleListValueList.Count; l++)
 				{
 					html.Append("<div id ='childRB" + countChildRadio + "' name='radioChildName" + temp + "'><input type = 'radio' id ='rbID" + countChildRadio + "' name ='radioName" + temp + "' readonly='readonly' value = '" + eleListValueList[l].value + "' /> " + eleListValueList[l].name + " </div>");
@@ -170,7 +171,7 @@ namespace FYP_Form
 			{
 				countCheck++;
 				int temp = countCheck - 1;
-				html.Append("<div id ='li_checkbox" + countCheck + "' class='form_bal_checkbox1' ondrag='maintainDrag()' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><div id = 'checklb" + temp + "' > " + eletypeList[i].label + " </div><div id='divCheck" + temp + "'>");
+				html.Append("<div id ='li_checkbox" + countCheck + "' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><div id = 'checklb" + temp + "' > " + eletypeList[i].label + " </div><div id='divCheck" + temp + "'>");
 				for (int l = 0; l < eleListValueList.Count; l++)
 				{
 					html.Append("<div id = 'childCheck" + countChildCheck + "' name='checkChildName" + temp + "' ><input type = 'checkbox' id = 'checkID" + countChildCheck + "' name = 'CheckBoxName" + temp + "' readonly='readonly' value = '" + eleListValueList[l].value + "' /> " + eleListValueList[l].name + " </div>");

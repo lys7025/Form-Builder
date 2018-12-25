@@ -229,7 +229,7 @@ namespace FYP_Form
 			{
 				countRb++;
 				int temp = countRb - 1;
-				html.Append("<div id ='li_rb" + countRb + "' class='form_bal_radio1' ondrag='maintainDrag()' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><i class='fa fa-arrows-alt' style='float:right;'></i><div id='rblb" + temp + "' > " + eletypeList[i].label + " </div><div id='divRadio" + temp + "'> ");
+				html.Append("<div id ='li_rb" + countRb + "' class='form_bal_radio1' ondrag='maintainDrag()' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><i class='fa fa-arrows-alt' style='float:right;'></i><div id='rblb" + temp + "' >" + eletypeList[i].label + " </div><div id='divRadio" + temp + "'> ");
 				for (int l = 0; l < eleListValueList.Count; l++)
 				{
 					html.Append("<div id ='childRB" + countChildRadio + "' name='radioChildName" + temp + "'><input type = 'radio' id ='rbID" + countChildRadio + "' name ='radioName" + temp + "' value = '" + eleListValueList[l].value + "' />" + eleListValueList[l].name + "</div>");
@@ -245,7 +245,7 @@ namespace FYP_Form
 			{
 				countCheck++;
 				int temp = countCheck - 1;
-				html.Append("<div id ='li_checkbox" + countCheck + "' class='form_bal_checkbox1' ondrag='maintainDrag()' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><i class='fa fa-arrows-alt' style='float:right;'></i><div id = 'checklb" + temp + "' > " + eletypeList[i].label + " </div><div id='divCheck" + temp + "'>");
+				html.Append("<div id ='li_checkbox" + countCheck + "' class='form_bal_checkbox1' ondrag='maintainDrag()' style='width: 300px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><i class='fa fa-arrows-alt' style='float:right;'></i><div id = 'checklb" + temp + "' >" + eletypeList[i].label + " </div><div id='divCheck" + temp + "'>");
 				for (int l = 0; l < eleListValueList.Count; l++)
 				{
 					html.Append("<div id = 'childCheck" + countChildCheck + "' name='checkChildName" + temp + "' ><input type = 'checkbox' id = 'checkID" + countChildCheck + "' name = 'CheckBoxName" + temp + "' value = '" + eleListValueList[l].value + "' />" + eleListValueList[l].name + "</div>");
@@ -796,7 +796,11 @@ namespace FYP_Form
 				imgByte = new Byte[File.ContentLength];
 				//force the control to load data in array
 				File.InputStream.Read(imgByte, 0, File.ContentLength);
-			}
+            }
+            else
+            {
+                imgByte = (byte[])Session["buffer"];
+            }
 			string conn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 			SqlConnection sqlConn = new SqlConnection(conn);
 

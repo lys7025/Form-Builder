@@ -6,16 +6,17 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.SessionState;
 
 namespace FYP_Form
 {
 	/// <summary>
 	/// Summary description for ShowImage
 	/// </summary>
-	public class ShowImage : IHttpHandler
-	{
-
-		public void ProcessRequest(HttpContext context)
+	public class ShowImage : IHttpHandler, IRequiresSessionState
+    {
+        Byte[] imgBuffer = null;
+        public void ProcessRequest(HttpContext context)
 		{
 			Int32 eleTypeId;
 			if (context.Request.QueryString["id"] != null)
@@ -27,14 +28,14 @@ namespace FYP_Form
 			Stream strm = ShowEmpImage(eleTypeId);
 			byte[] buffer = new byte[4096];
 			int byteSeq = strm.Read(buffer, 0, 4096);
-
-			while (byteSeq > 0)
+            while (byteSeq > 0)
 			{
 				context.Response.OutputStream.Write(buffer, 0, byteSeq);
 				byteSeq = strm.Read(buffer, 0, 4096);
 			}
-			//context.Response.BinaryWrite(buffer);
-		}
+            context.Session["buffer"] = imgBuffer;
+            //context.Response.BinaryWrite(buffer);
+        }
 
 		public Stream ShowEmpImage(int eleTypeId)
 		{
@@ -45,11 +46,12 @@ namespace FYP_Form
 			cmdRetrieveImage.CommandType = CommandType.Text;
 			cmdRetrieveImage.Parameters.AddWithValue("@eleTypeId", eleTypeId);
 			sqlConn.Open();
-			object img = cmdRetrieveImage.ExecuteScalar();
-			try
+            object img = cmdRetrieveImage.ExecuteScalar();
+            imgBuffer = (byte[])img;
+            try
 			{
 				return new MemoryStream((byte[])img);
-			}
+            }
 			catch
 			{
 				return null;
