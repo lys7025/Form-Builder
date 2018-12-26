@@ -1576,9 +1576,9 @@
 								<li class="form_bal_date" id="li_date">
 									<a href="javascript:;">Date <i class="fa fa-plus-circle pull-right"></i></a>
 								</li>
-								<li class="form_bal_file" id="li_file">
+								<%--<li class="form_bal_file" id="li_file">
 									<a href="javascript:;">File Upload <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
+								</li>--%>
 								<li class="form_bal_label" id="li_label">
 									<a href="javascript:;">Label <i class="fa fa-plus-circle pull-right"></i></a>
 								</li>

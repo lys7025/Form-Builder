@@ -24,11 +24,13 @@
 			padding: 10px;
 		}
 
+
+
 	.bg-modal {
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -48,6 +50,21 @@
 		right: 0;
 		opacity: 0.6;
 		color: white
+	}
+
+    #btnBack {
+		height: 80px;
+		position: fixed;
+		bottom: 350px;
+		right: 0;
+        width:200px;
+        background-color:grey;
+		color: black;
+		font-size: 22px;
+		font-family: Calibri;
+		border-bottom: 3px solid #925b08;
+		border: none;
+		border-radius: 5px;
 	}
 
 	.divInsert {
@@ -83,6 +100,7 @@
 		background-color: white;
 		border-radius: 4px;
 		position: relative;
+        padding:20px
 	}
 
 	.close {
@@ -97,7 +115,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -118,7 +136,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -139,7 +157,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -160,7 +178,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -181,7 +199,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -202,7 +220,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -223,7 +241,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -244,7 +262,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		opacity: 0.7;
+		opacity: 0.9;
 		position: absolute;
 		top: 0;
 		display: flex;
@@ -518,7 +536,7 @@
 		var opt = document.createElement("option");
 
 		opt.text = document.getElementById("getSelectText").value;
-		opt.value = document.getElementById("getSelectValue").value;
+		opt.value = opt.text;
 
 		if (opt.text == "" || opt.value == "") {
 			alert("Please fill in the blank");
@@ -565,8 +583,9 @@
 
 	function addRadio() {
 
-		var val = document.getElementById("addRadioValue").value;
-		var text = document.getElementById("addRadioText").value;
+		//var val = document.getElementById("addRadioValue").value;
+        var text = document.getElementById("addRadioText").value;
+        var val = text;
 		var divRB = document.getElementById("divRadio" + getint);
 		var name = "radioName" + getint;
 		countRBchild = document.getElementById('<%=hfRadioChild.ClientID%>').value == "" ? 1 : document.getElementById('<%=hfRadioChild.ClientID%>').value;
@@ -612,8 +631,9 @@
 
 	function addCheck() {
 
-		var val = document.getElementById("addCheckValue").value;
-		var text = document.getElementById("addCheckText").value;
+		//var val = document.getElementById("addCheckValue").value;
+        var text = document.getElementById("addCheckText").value;
+        var val = text;
 		var divCheck = document.getElementById("divCheck" + getint);
 		var name = "CheckBoxName" + getint;
 		countCheckchild = document.getElementById('<%=hfCheckChild.ClientID%>').value == "" ? 1 : document.getElementById('<%=hfCheckChild.ClientID%>').value;
@@ -684,7 +704,18 @@
 			}
 			obj.readAsDataURL(this.files[0]);
 		}
-	}
+    }
+
+    function cancelPage() {
+
+        if (confirm('Are you sure you want Cancel? the Changes will not be save')) {
+            document.location.href = 'FormPage';
+    
+        } else {
+    // Do nothing!
+            }
+
+    }
 
 	function maintainDrag() {
 
@@ -1556,9 +1587,9 @@
 								<li class="form_bal_date" id="li_date">
 									<a href="javascript:;">Date <i class="fa fa-plus-circle pull-right"></i></a>
 								</li>
-								<li class="form_bal_file" id="li_file">
+								<%--<li class="form_bal_file" id="li_file">
 									<a href="javascript:;">File Upload <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
+								</li>--%>
 								<li class="form_bal_label" id="li_label">
 									<a href="javascript:;">Label <i class="fa fa-plus-circle pull-right"></i></a>
 								</li>
@@ -1585,6 +1616,10 @@
 					<div id="deletefield" class="delete">
 						Drag here to delete
 					</div>
+
+                    <div id="cancelPage" class="back">
+                        <input id="btnBack" type="button" value="Cancel" onclick="cancelPage()" />
+                    </div>
 
 					<asp:FileUpload ID="imgupload" runat="server" style="display: none" onchange="showImage.call(this)"/>
 					<%--<input type="file" id="imgupload" style="display: none" onchange="showImage.call(this)" />--%>
@@ -1709,11 +1744,14 @@
 					<input type="text" id="changeLabelDDL" />
 					<input type="button" value="Change Label Name" onclick="changeDDLText()" />
 
+                    <br />
+                    ------------------------------------------------------------------------------------------
+                    <br />
 					<div id="select-option">
 						Text 
 						<input type="text" id="getSelectText" />
-						Value
-						<input type="text" id="getSelectValue" />
+						<%--Value
+						<input type="text" id="getSelectValue" />--%>
 
 					</div>
 
@@ -1770,12 +1808,14 @@
 					<input type="text" id="changeLabelRadio" />
 					<input type="button" value="Change Label Name" onclick="changeRadioText()" />
 					<br />
+                    ------------------------------------------------------------------------------------------
+                    <br />
 
 					Radio Text 
 					<input type="text" id="addRadioText" />
 					<br />
-					Radio Value 
-					<input type="text" id="addRadioValue" />
+					<%--Radio Value 
+					<input type="text" id="addRadioValue" />--%>
 					<br />
 					<input type="button" value="Add Radio" onclick="addRadio()" />
 
@@ -1839,12 +1879,15 @@
 					<input type="text" id="changeLabelCheck" />
 					<input type="button" value="Change Label Name" onclick="changeCheckText()" />
 					<br />
+                    <br />
+                    ------------------------------------------------------------------------------------------
+                    <br />
 
 					Check Text 
 					<input type="text" id="addCheckText" />
 					<br />
-					Check Value 
-					<input type="text" id="addCheckValue" />
+					<%--Check Value 
+					<input type="text" id="addCheckValue" />--%>
 					<br />
 					<input type="button" value="Add Radio" onclick="addCheck()" />
 
