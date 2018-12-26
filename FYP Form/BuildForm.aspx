@@ -733,6 +733,24 @@
 
     }
 
+    //function createDiv() {
+    //    var div = document.createElement('div');
+    //    div.className = 'containerClass';
+    //    div.innerHTML = ' <br /> <br /> <input type="button" style="margin-left:800px" value="remove" onclick="removeRow(this)">';
+        
+    //    document.getElementById("row1").appendChild(div);
+        
+    //    alert("Add");
+        
+        
+
+    //    //document.body.appendChild(div);
+    //}
+
+    //function removeRow(input) {
+    //document.getElementById('row1').removeChild(input.parentNode);
+    //}
+
 	function maintainDrag() {
 
 		$(".form_bal_file1").draggable({
