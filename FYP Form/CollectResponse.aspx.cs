@@ -19,6 +19,7 @@ namespace FYP_Form
 		List<EleListValue> eleListValueList = new List<EleListValue>();
 		StringBuilder html = new StringBuilder();
 		string title = "";
+        string status = "";
 		int id = 0;
 		int countChildCheck = 1;
 		int countChildRadio = 1;
@@ -313,7 +314,8 @@ namespace FYP_Form
 			while (sdr.Read())
 			{
 				title = sdr["title"].ToString();
-			}
+                status = sdr["status"].ToString();
+            }
 			sqlConn.Close();
 		}
 
@@ -507,16 +509,32 @@ namespace FYP_Form
 			//Response.Write("<script>alert('" + exist + "')</script>");
 			if (exist)
 			{
-				CreateTable();
-				GetResponse(total);
-				InsertMapping();
-				Response.Write("<script>alert('Your response is submitted')</script>");
+                if (status == "inactive")
+                {
+                    Response.Write("<script>alert('This form is deactivated.')</script>");
+                }
+                else
+                {
+                    CreateTable();
+                    GetResponse(total);
+                    InsertMapping();
+                    Response.Write("<script>alert('Your response is submitted')</script>");
+                }
+				
 			}
 			else
 			{
-				GetResponse(total);
-                InsertMapping();
-                Response.Write("<script>alert('Your response is submitted')</script>");
+                if (status == "inactive")
+                {
+                    Response.Write("<script>alert('This form is deactivated.')</script>");
+                }
+                else
+                {
+                    GetResponse(total);
+                    InsertMapping();
+                    Response.Write("<script>alert('Your response is submitted')</script>");
+                }
+                
 			}
 			//string url = HttpContext.Current.Request.Url.AbsoluteUri;
 			//Response.Write("<script>alert('" + exist + "')</script>");
