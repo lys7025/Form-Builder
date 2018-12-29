@@ -11,31 +11,32 @@
     var arrRadioCount = [];
     var arrDrop = [];
     var arrNumber = [];
+    var arrDate = [];
 
-    
+
     function getTodayDate(id) {
-          var today = new Date();
-          //var dd = today.getDate();
-          //var mm = today.getMonth()+1; //January is 0!
-          //var yyyy = today.getFullYear();
+        var today = new Date();
+        //var dd = today.getDate();
+        //var mm = today.getMonth()+1; //January is 0!
+        //var yyyy = today.getFullYear();
 
-          //if(dd<10) {
-          //    dd = '0'+dd
-          //} 
+        //if(dd<10) {
+        //    dd = '0'+dd
+        //} 
 
-          //if(mm<10) {
-          //    mm = '0'+mm
-          //} 
+        //if(mm<10) {
+        //    mm = '0'+mm
+        //} 
 
-          //today = yyyy + '/' + mm + '/' + dd;
-          //console.log(today);
+        //today = yyyy + '/' + mm + '/' + dd;
+        //console.log(today);
         document.getElementById(id).valueAsDate = today;
 
-       
+
     }
 
-    
-    
+
+
 
 
     $(function () {
@@ -111,11 +112,18 @@
                 }
                 document.getElementById("hfNumberArr").value = arrNumber;
             }
+
+            if (document.getElementById('<%=hfDate.ClientID%>').value > 0) {
+                for (var i = 1; i <= document.getElementById('<%=hfDate.ClientID%>').value; i++) {
+                    arrDate.push($("#date_id" + i).val());
+                }
+                document.getElementById("hfDateArr").value = arrDate;
+            }
         })
     });
 
-        window.onload 
-        
+    window.onload
+
 
 
 </script>
@@ -178,12 +186,14 @@
             <asp:HiddenField ID="hfCheck" runat="server" />
             <asp:HiddenField ID="hfCheckCount" runat="server" />
             <asp:HiddenField ID="hfNumber" runat="server" />
+            <asp:HiddenField ID="hfDate" runat="server" />
             <asp:HiddenField ID="hfTextArr" runat="server" />
             <asp:HiddenField ID="hfTextareaArr" runat="server" />
             <asp:HiddenField ID="hfRadioArr" runat="server" />
             <asp:HiddenField ID="hfCheckArr" runat="server" />
             <asp:HiddenField ID="hfDropArr" runat="server" />
             <asp:HiddenField ID="hfNumberArr" runat="server" />
+            <asp:HiddenField ID="hfDateArr" runat="server" />
         </div>
     </form>
 </body>

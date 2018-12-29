@@ -1700,6 +1700,8 @@
 						<asp:HiddenField ID="hfImage" runat="server" />
 						<asp:HiddenField ID="hfImageLeft" runat="server" />
 						<asp:HiddenField ID="hfImageTop" runat="server" />
+                        <asp:HiddenField ID="hfImageWidth" runat="server" />
+                        <asp:HiddenField ID="hfImageHeight" runat="server" />
 						<%--<div id="phHidden"></div>--%>
 						<%--<asp:PlaceHolder ID="phHidden" runat="server"></asp:PlaceHolder>--%>
 					</div>

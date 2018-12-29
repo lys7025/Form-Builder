@@ -22,6 +22,8 @@ namespace FYP_Form
 		int countCheck = 0;
 		int countChildCheck = 1;
 		int countChildRadio = 1;
+        int width = 0;
+        int height = 0;
 		string title = "";
 		int version = 0;
 		List<Element_Type> eletypeList = new List<Element_Type>();
@@ -150,9 +152,10 @@ namespace FYP_Form
 				}
 				else if (eletypeList[i].name == "image")
 				{
+                    RetrieveImage(eletypeList[i].eleTypeId);
 					countImage++;
 					int temp = countImage - 1;
-					html.Append("<div id ='li_image" + countImage + "' class='form_bal_image1' ondrag='maintainDrag()' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><i class='fa fa-arrows-alt' style='float:right;'></i> <img src ='ShowImage.ashx?id=" + formEleList[i].eleTypeId + "' onclick='changeImage(this.id)' style='width: 150px; height: 150px' id='image" + temp + "'/></div>");
+					html.Append("<div id ='li_image" + countImage + "' class='form_bal_image1' ondrag='maintainDrag()' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><i class='fa fa-arrows-alt' style='float:right;'></i> <img src ='ShowImage.ashx?id=" + formEleList[i].eleTypeId + "' onclick='changeImage(this.id)' style='width:"+ width +"px; height:"+ height +"px;' id='image" + temp + "'/></div>");
 				}
 			}
 			//hfTextLabel.Value = string.Join(",", arrTxtLabel);
@@ -348,6 +351,23 @@ namespace FYP_Form
 			}
 			sqlConn.Close();
 		}
+        
+        private void RetrieveImage(int eleTypeId)
+        {
+            string conn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection sqlConn = new SqlConnection(conn);
+            string retrieveImage = "SELECT * FROM Image WHERE eleTypeId = @eleTypeId";
+            SqlCommand cmdRetrieveImage = new SqlCommand(retrieveImage, sqlConn);
+            cmdRetrieveImage.Parameters.AddWithValue("@eleTypeId", eleTypeId);
+            sqlConn.Open();
+            SqlDataReader sdr = cmdRetrieveImage.ExecuteReader();
+            while (sdr.Read())
+            {
+                width = int.Parse(sdr["width"].ToString());
+                height = int.Parse(sdr["height"].ToString());
+            }
+            sqlConn.Close();
+        }
 
 		private void RetrieveForm()
 		{
@@ -783,10 +803,10 @@ namespace FYP_Form
 		{
 			string name = "null";
 			string path = "null";
-			int width = 150;
-			int height = 150;
+            int width = hfImageWidth.Value == "" ? 150 : Convert.ToInt32(hfImageWidth.Value);
+            int height = hfImageHeight.Value == "" ? 150 : Convert.ToInt32(hfImageHeight.Value);
 
-			FileUpload img = (FileUpload)imgupload;
+            FileUpload img = (FileUpload)imgupload;
 			Byte[] imgByte = null;
 			if (img.HasFile && img.PostedFile != null)
 			{

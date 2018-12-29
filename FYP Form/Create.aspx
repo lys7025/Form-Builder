@@ -33,7 +33,7 @@
             </div>
         </div>-->
 
-		<div class="form-group">
+		<%--<div class="form-group">
 
 			<div class="col-md-10">
 
@@ -42,7 +42,7 @@
 				<asp:TextBox ID="txtVersion" runat="server"></asp:TextBox>
 
 			</div>
-		</div>
+		</div>--%>
 
 		<%--<div class="form-group">
           

@@ -607,6 +607,24 @@ namespace FYP_Form {
         protected global::System.Web.UI.WebControls.HiddenField hfImageTop;
         
         /// <summary>
+        /// hfImageWidth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfImageWidth;
+        
+        /// <summary>
+        /// hfImageHeight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfImageHeight;
+        
+        /// <summary>
         /// btnInsert control.
         /// </summary>
         /// <remarks>

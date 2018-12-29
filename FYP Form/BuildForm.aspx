@@ -774,6 +774,8 @@
             image.style.height = height+"px";
             image.style.width = width+"px";
 
+            document.getElementById("hfImageWidth").value = width;
+            document.getElementById("hfImageHeight").value = height;
 		   
 			alert("Change successfully");
 			document.querySelector('.bg-modal-image').style.display = 'none';
@@ -1802,6 +1804,8 @@
 						<asp:HiddenField ID="hfImage" runat="server" />
 						<asp:HiddenField ID="hfImageLeft" runat="server" />
 						<asp:HiddenField ID="hfImageTop" runat="server" />
+                        <asp:HiddenField ID="hfImageWidth" runat="server" />
+                        <asp:HiddenField ID="hfImageHeight" runat="server" />
 						<%--<div id="phHidden"></div>--%>
 						<%--<asp:PlaceHolder ID="phHidden" runat="server"></asp:PlaceHolder>--%>
 					</div>

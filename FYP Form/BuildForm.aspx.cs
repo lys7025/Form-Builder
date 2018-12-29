@@ -377,10 +377,10 @@ namespace FYP_Form
 		{
 			string name = "null";
 			string path = "null";
-			int width = 150;
-			int height = 150;
+			int width = hfImageWidth.Value == "" ? 150 : Convert.ToInt32(hfImageWidth.Value);
+			int height = hfImageHeight.Value == "" ? 150 : Convert.ToInt32(hfImageHeight.Value);
 
-			FileUpload img = (FileUpload)imgupload;
+            FileUpload img = (FileUpload)imgupload;
 			Byte[] imgByte = null;
 			if (img.HasFile && img.PostedFile != null)
 			{

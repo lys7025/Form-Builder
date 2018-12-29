@@ -103,6 +103,15 @@ namespace FYP_Form {
         protected global::System.Web.UI.WebControls.HiddenField hfNumber;
         
         /// <summary>
+        /// hfDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfDate;
+        
+        /// <summary>
         /// hfTextArr control.
         /// </summary>
         /// <remarks>
@@ -155,5 +164,14 @@ namespace FYP_Form {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfNumberArr;
+        
+        /// <summary>
+        /// hfDateArr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfDateArr;
     }
 }

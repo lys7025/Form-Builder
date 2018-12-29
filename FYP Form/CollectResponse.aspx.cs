@@ -112,8 +112,10 @@ namespace FYP_Form
 				else if (eletypeList[i].name == "date")
 				{
 					countDate++;
-					html.Append("<div id ='li_date' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' > Date<input type='date' value='" + DateTime.Today.ToString("yyyy-MM-dd") + "' id='date_id" + countDate + "' ></div>");
-				}
+                    html.Append("<div id ='li_date' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' > Date<input type='date' value='" + DateTime.Today.ToString("yyyy-MM-dd") + "' id='date_id" + countDate + "' ></div>");
+                    arrColName.Add("Date"+ countDate);
+                    arrEleId.Add(formEleList[i].eleId);
+                }
 				else if (eletypeList[i].name == "file")
 				{
 					countFile++;
@@ -134,8 +136,13 @@ namespace FYP_Form
 			}
 			hfText.Value = countTxt.ToString();
 			hfTextarea.Value = countTxtArea.ToString();
-			// Placeholder at here to avoid redundant item display on page
-			PlaceHolder1.Controls.Add(new Literal { Text = html.ToString() });
+            hfDrop.Value = countDdl.ToString();
+            hfNumber.Value = countNumber.ToString();
+            hfRadio.Value = countRb.ToString();
+            hfCheck.Value = countCheck.ToString();
+            hfDate.Value = countDate.ToString();
+            // Placeholder at here to avoid redundant item display on page
+            PlaceHolder1.Controls.Add(new Literal { Text = html.ToString() });
 		}
 
 		public void displayEleListItem(int i)
@@ -153,7 +160,7 @@ namespace FYP_Form
                 html.Append("</select></div>");
                 //arrColName.Add(eletypeList[i].label);
                 arrColName.Add(eletypeList[i].label);
-			}
+            }
 			else if (eletypeList[i].name == "number")
 			{
 				countNumber++;
@@ -169,7 +176,7 @@ namespace FYP_Form
 					}
 				}
 				arrColName.Add("Quantity");
-			}
+            }
 			else if (eletypeList[i].name == "radio")
 			{
 				countRb++;
@@ -182,7 +189,7 @@ namespace FYP_Form
 				}
 				html.Append("</div></div>");
 				arrColName.Add(eletypeList[i].label);
-			}
+            }
 			else if (eletypeList[i].name == "check")
 			{
 				countCheck++;
@@ -195,11 +202,7 @@ namespace FYP_Form
 				}
 				html.Append("</div></div>");
 				arrColName.Add(eletypeList[i].label);
-			}
-			hfDrop.Value = countDdl.ToString();
-			hfNumber.Value = countNumber.ToString();
-			hfRadio.Value = countRb.ToString();
-			hfCheck.Value = countCheck.ToString();
+            }
 			eleListValueList.Clear();
 		}
 
@@ -357,7 +360,7 @@ namespace FYP_Form
 			sqlConn.Open();
 			string createString = "";
 			string createCol = "";
-			int total = countCheck + countDdl + countRb + countNumber + countTxt + countTxtArea;
+			int total = countCheck + countDdl + countRb + countNumber + countTxt + countTxtArea + countDate;
 
 			for (int i = 0; i < total; i++)// count how many column need to create
 			{
@@ -385,7 +388,7 @@ namespace FYP_Form
 			SqlConnection sqlConn = new SqlConnection(conn);
 			sqlConn.Open();
 			string createCol = "";
-			int total = countCheck + countDdl + countRb + countNumber + countTxt + countTxtArea;
+			int total = countCheck + countDdl + countRb + countNumber + countTxt + countTxtArea + countDate;
 			for (int i = 0; i < total; i++)// count how many column need to create
 			{
 				if (string.IsNullOrEmpty(createCol))//if empty create add first column name to createCol
@@ -476,6 +479,10 @@ namespace FYP_Form
 					arrResponse.Add(arrTxt[countText].ToString());
 					countText++;
 				}
+                else if (eletypeList[i].name == "date")
+                {
+                    arrResponse.Add(hfDateArr.Value);
+                }
 			}
             InsertRecord(arrResponse);
         }
@@ -503,12 +510,12 @@ namespace FYP_Form
 
 		protected void btnSend_Click(object sender, EventArgs e)
 		{
-			int total = countCheck + countDdl + countRb + countNumber + countTxt + countTxtArea;
+			int total = countCheck + countDdl + countRb + countNumber + countTxt + countTxtArea + countDate;
 			//retrieve value
 			bool exist = CheckTable();
-			//Response.Write("<script>alert('" + exist + "')</script>");
-			if (exist)
-			{
+            //Response.Write("<script>alert('" + exist + "')</script>");
+            if (exist)
+            {
                 if (status == "inactive")
                 {
                     Response.Write("<script>alert('This form is deactivated.')</script>");
@@ -520,10 +527,10 @@ namespace FYP_Form
                     InsertMapping();
                     Response.Write("<script>alert('Your response is submitted')</script>");
                 }
-				
-			}
-			else
-			{
+
+            }
+            else
+            {
                 if (status == "inactive")
                 {
                     Response.Write("<script>alert('This form is deactivated.')</script>");
@@ -534,11 +541,11 @@ namespace FYP_Form
                     InsertMapping();
                     Response.Write("<script>alert('Your response is submitted')</script>");
                 }
-                
-			}
-			//string url = HttpContext.Current.Request.Url.AbsoluteUri;
-			//Response.Write("<script>alert('" + exist + "')</script>");
-			//ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup();", true);
-		}
+
+            }
+            //string url = HttpContext.Current.Request.Url.AbsoluteUri;
+            //Response.Write("<script>alert('" + exist + "')</script>");
+            //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup();", true);
+        }
 	}
 }

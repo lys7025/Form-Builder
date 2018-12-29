@@ -18,6 +18,8 @@ namespace FYP_Form
 		List<EleListValue> eleListValueList = new List<EleListValue>();
 		StringBuilder html = new StringBuilder();
 		int id = 0;
+        int width = 0;
+        int height = 0;
         string status = "";
 		int countChildCheck = 1;
 		int countChildRadio = 1;
@@ -112,9 +114,10 @@ namespace FYP_Form
 				}
 				else if (eletypeList[i].name == "image")
 				{
+                    RetrieveImage(eletypeList[i].eleTypeId);
 					countImage++;
 					int temp = countImage - 1;
-					html.Append("<div id ='li_image" + countImage + "' class='form_bal_image1' ondrag='maintainDrag()' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><i class='fa fa-arrows-alt' style='float:right;'></i> <img src ='ShowImage.ashx?id=" + formEleList[i].eleTypeId + "' onclick='changeImage(this.id)' style='width: 150px; height: 150px' id='image" + temp + "'/></div>");
+					html.Append("<div id ='li_image" + countImage + "' class='form_bal_image1' ondrag='maintainDrag()' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><i class='fa fa-arrows-alt' style='float:right;'></i> <img src ='ShowImage.ashx?id=" + formEleList[i].eleTypeId + "' onclick='changeImage(this.id)' style='width: " + width + "px; height: " + height + "px' id='image" + temp + "'/></div>");
 				}
 			}
 			// Placeholder at here to avoid redundant item display on page
@@ -184,7 +187,24 @@ namespace FYP_Form
 			eleListValueList.Clear();
 		}
 
-		public class Form_Ele
+        private void RetrieveImage(int eleTypeId)
+        {
+            string conn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection sqlConn = new SqlConnection(conn);
+            string retrieveImage = "SELECT * FROM Image WHERE eleTypeId = @eleTypeId";
+            SqlCommand cmdRetrieveImage = new SqlCommand(retrieveImage, sqlConn);
+            cmdRetrieveImage.Parameters.AddWithValue("@eleTypeId", eleTypeId);
+            sqlConn.Open();
+            SqlDataReader sdr = cmdRetrieveImage.ExecuteReader();
+            while (sdr.Read())
+            {
+                width = int.Parse(sdr["width"].ToString());
+                height = int.Parse(sdr["height"].ToString());
+            }
+            sqlConn.Close();
+        }
+
+        public class Form_Ele
 		{
 			public int eleId { get; set; }
 			public int formId { get; set; }

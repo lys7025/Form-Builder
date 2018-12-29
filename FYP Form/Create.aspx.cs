@@ -22,7 +22,7 @@ namespace FYP_Form
 			//int staffId = 2;
 			string title = txtTitle.Text;
 			Session["title"] = title;
-			int version = int.Parse(txtVersion.Text.ToString());
+			int version = 1;
 			Session["version"] = version;
 			string status = "active";
 
