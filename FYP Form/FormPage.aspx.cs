@@ -79,7 +79,7 @@ namespace FYP_Form
 						htmlTable.Append("<td>" + frm.status + "</td>");
 						htmlTable.AppendFormat("<td><a href='Edit?id={0}'>Edit</a> | ", frm.formId);//Pass form id at that row
 						htmlTable.AppendFormat("<a href='ViewPage?id={0}'>View</a> | ", frm.formId);
-						htmlTable.AppendFormat("<a href='#' onClick='show({0})'>Delete</a></td>", frm.formId);
+						htmlTable.AppendFormat("<a href='#' onClick='show({0})'>Deactive</a></td>", frm.formId);
 						htmlTable.Append("</tr>");
 					
 				}

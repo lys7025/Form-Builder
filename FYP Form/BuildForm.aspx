@@ -278,6 +278,28 @@
 		font-size: 40px;
 		transform: rotate(45deg);
 	}
+
+    .bg-modal-image {
+		width: 100%;
+		height: 100%;
+		background-color: black;
+		opacity: 0.9;
+		position: absolute;
+		top: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		display: none;
+	}
+
+	.close_image {
+		position: absolute;
+		top: 0;
+		right: 14px;
+		font-size: 40px;
+		transform: rotate(45deg);
+	}
+
 </style>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -409,9 +431,9 @@
 
 		for (var j = 1; j <= countImage; j++) {
 
-			if (id == "" + (j - 1)) {
+			if (id == "btneditImage" + (j - 1)) {
 
-				document.querySelector(".bg-modal").style.display = "flex";
+				document.querySelector(".bg-modal-image").style.display = "flex";
 
 			}
 		}
@@ -423,7 +445,8 @@
 				document.querySelector(".bg-modal-label").style.display = "flex";
 
 			}
-		}
+        }
+
 
 		test = id;
 		//var slength = test.length;
@@ -581,7 +604,21 @@
 			document.getElementById("rblb" + getint).innerHTML = document.getElementById("changeLabelRadio").value;
 			alert("Update Successfully");
 		}
-	}
+    }
+
+    function changeNumberText() {
+
+		if (document.getElementById("changeLabelNumber").value == "") {
+
+			alert("Please enter the label");
+		} else {
+			document.getElementById("numberLB" + getint).innerHTML = document.getElementById("changeLabelNumber").value;
+			alert("Update Successfully");
+		}
+    }
+
+
+
 
 	function changeDDLText() {
 
@@ -722,6 +759,55 @@
 			obj.readAsDataURL(this.files[0]);
 		}
     }
+
+    function resizeImage(id) {
+
+        if (document.getElementById("changeImageHeight").value == "" || document.getElementById("changeImageWidth").value == "" ) {
+
+			alert("Please enter the height and width");
+		} else {
+
+            var image = document.getElementById("image" + getImageInt);
+            var height = document.getElementById("changeImageHeight").value;
+            var width = document.getElementById("changeImageWidth").value;
+
+            image.style.height = height+"px";
+            image.style.width = width+"px";
+
+		   
+			alert("Change successfully");
+			document.querySelector('.bg-modal-image').style.display = 'none';
+			
+
+		}
+
+    
+    }
+
+    function getTodayDate(id) {
+          var today = new Date();
+          //var dd = today.getDate();
+          //var mm = today.getMonth()+1; //January is 0!
+          //var yyyy = today.getFullYear();
+
+          //if(dd<10) {
+          //    dd = '0'+dd
+          //} 
+
+          //if(mm<10) {
+          //    mm = '0'+mm
+          //} 
+
+          //today = yyyy + '/' + mm + '/' + dd;
+          //console.log(today);
+        document.getElementById(id).valueAsDate = today;
+
+       
+    }
+
+    
+
+
     function cancelPage() {
 
         if (confirm('Are you sure you want Cancel? the Changes will not be save')) {
@@ -1392,7 +1478,7 @@
 		});
 
 		$(".form_bal_date").draggable({
-			helper: getDate,
+            helper: getDate,
 			containment: '#droppable',
 			cursor: 'move',
 		});
@@ -1445,7 +1531,7 @@
 
 		function getHeader(event) {
 
-			return ' <div id="li_header' + countheader + '" class="form_bal_header1" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i>  <div id="headerlb' + countheader + '" style="font-family:Arial; font-size:32px; font-weight:bold  "> Header </div> <a href="#" id="btneditheader' + countheader + '" class="button" onclick="btnclick(this.id)"> edit </a> </div>'
+			return ' <div id="li_header' + countheader + '" class="form_bal_header1" style="word-wrap:break-word;width:700px" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i>  <div id="headerlb' + countheader + '" style="font-family:Arial; font-size:32px; font-weight:bold  "> Header </div> <a href="#" id="btneditheader' + countheader + '" class="button" onclick="btnclick(this.id)"> edit </a> </div>'
 		}
 
 		function getParagraph(event) {
@@ -1454,12 +1540,13 @@
 		}
 		function getBigNumber(event) {
 
-			return ' <div id="li_number' + countnumber + '" class="form_bal_number1" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i> Quantity <input type="number" id="bigNumQty' + countnumber + '" name="quantity" min="1" max="5"> <a href="#" id="btneditnumber' + countnumber + '" class="button" onclick="btnclick(this.id)"> edit </a>  </div>'
+			return ' <div id="li_number' + countnumber + '" class="form_bal_number1" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i> <div id="numberLB' + countnumber + '"> Quantity </div> <input type="number" id="bigNumQty' + countnumber + '" name="quantity" min="1" max="5"> <a href="#" id="btneditnumber' + countnumber + '" class="button" onclick="btnclick(this.id)"> edit </a>  </div>'
 		}
 
 		function getDate(event) {
 
-			return ' <div id="li_date' + countdate + '" class="form_bal_date1" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i> Date <input type="date" id="date_id' + countdate + '" >   </div>'
+            return ' <div id="li_date' + countdate + '" class="form_bal_date1" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i> Date <input type="date" id="date_id' + countdate + '" disabled="disabled" onload="getTodayDate(this.id)" >   </div>'
+            
 		}
 
 		function getUploadFile(event) {
@@ -1470,12 +1557,12 @@
 
 		function getLabel(event) {
 
-			return ' <div id="li_label' + countlabel + '" class="form_bal_label1" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i> <div id="labelID' + countlabel + '" style="font-size:16px; "> Label </div> <a href="#" id="btneditlabel' + countlabel + '" class="button" onclick="btnclick(this.id)"> edit </a>  </div>'
+			return ' <div id="li_label' + countlabel + '" class="form_bal_label1" style="word-wrap:break-word;width:500px" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i> <div id="labelID' + countlabel + '" style="font-size:16px; "> Label </div> <a href="#" id="btneditlabel' + countlabel + '" class="button" onclick="btnclick(this.id)"> edit </a>  </div>'
 		}
 
 		function getImage(event) {
 
-			return ' <div id="li_image' + countImage + '" class="form_bal_image1" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i> <img src="" onclick="changeImage(this.id)" style="width:150px; height:150px" id="image' + countImage + '" />  </div>'
+			return ' <div id="li_image' + countImage + '" class="form_bal_image1" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i> <img src="" onclick="changeImage(this.id)" style="width:150px; height:150px" id="image' + countImage + '" /> <a href="#" id="btneditImage' + countImage + '" class="button" onclick="btnclick(this.id)"> resize </a>     </div>'
 		}
 		//Close edit dialog
 		document.querySelector('.close').addEventListener('click',
@@ -1539,6 +1626,13 @@
 
 				document.querySelector('.bg-modal-label').style.display = 'none';
 			}
+        );
+
+        document.querySelector('.close_image').addEventListener('click',
+			function () {
+
+				document.querySelector('.bg-modal-image').style.display = 'none';
+			}
 		);
 
 		//                                             document.getElementById("btnedit").addEventListener("click",
@@ -1589,7 +1683,7 @@
 									<a href="javascript:;">Paragraph <i class="fa fa-plus-circle pull-right"></i></a>
 								</li>
 								<li class="form_bal_number" id="li_number">
-									<a href="javascript:;">Big Number <i class="fa fa-plus-circle pull-right"></i></a>
+									<a href="javascript:;">Range Number <i class="fa fa-plus-circle pull-right"></i></a>
 								</li>
 								<li class="form_bal_date" id="li_date">
 									<a href="javascript:;">Date <i class="fa fa-plus-circle pull-right"></i></a>
@@ -1608,7 +1702,7 @@
 					</div>
 
              
-
+                    
 
 					<div id="container" class="ui-widget-content">
 
@@ -1862,6 +1956,8 @@
 						<option value="white">white</option>
 						<option value="green">green</option>
 
+                        
+
 					</select>
 
 					<br />
@@ -1883,6 +1979,14 @@
 
 				<div class="modal-content">
 					<div class="close_number">+</div>
+
+
+                    Label
+					<input type="text" id="changeLabelNumber" />
+                    <input type="button" value="Change Label Name" onclick="changeNumberText()" />
+					<br />
+                    ------------------------------------------------------------------------------------------
+                    <br />
 
 					Min quantity 
 					<input type="number" id="changeMinNumber" value="1" />
@@ -1919,6 +2023,24 @@
 				</div>
 			</div>
 
+            <div class="bg-modal-image">
+
+				<div class="modal-content">
+					<div class="close_image">+</div>
+
+					Height
+					<input type="text" id="changeImageHeight" onkeypress="return isNumber(event)" />
+                    <br />
+                    Width
+                    <input type="text" id="changeImageWidth" onkeypress="return isNumber(event)" />
+					<input type="button" value="Change Size" onclick="resizeImage()" />
+					<br />
+
+
+				</div>
+			</div>
+
+
 			<div class="bg-modal-label">
 
 				<div class="modal-content">
@@ -1931,6 +2053,10 @@
                     Font Size
 					<select id="SelectFontSizeLabel" style="width: 180px; height: 23px">
 
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
 						<option value="12">12</option>
 						<option value="14">14</option>
 						<option value="16">16</option>

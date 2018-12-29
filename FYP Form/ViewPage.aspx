@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewPage.aspx.cs" Inherits="FYP_Form.ViewPage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterLogout.Master" AutoEventWireup="true" CodeBehind="ViewPage.aspx.cs" Inherits="FYP_Form.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server" ValidateRequestMode="Disabled">
 	<script type="text/javascript">
@@ -16,6 +16,22 @@
 			background: #dbdddd;
 			margin-left: 160px;
 		}
+
+        .btnUrl {
+		height: 80px;
+		width: 200px;
+		background: #89b6ff;
+		color: white;
+		font-size: 22px;
+		font-family: Calibri;
+		border-bottom: 3px solid #925b08;
+		border: none;
+		border-radius: 5px;
+        height: 50px;
+		position: fixed;
+		bottom: 250px;
+		right: 0;
+	}
 
 			#container > div {
 				width: 100px;
@@ -40,7 +56,7 @@
 			}
 	</style>
 	<div>
-		<asp:Button ID="btnSend" runat="server" Text="Get URL" OnClick="btnSend_Click" />
+		<asp:Button ID="btnSend" runat="server" CssClass="btnUrl" Text="Get URL" OnClick="btnSend_Click" />
 	</div>
 	<div id="mdDialog" class="modal">
 
