@@ -97,7 +97,7 @@ namespace FYP_Form
 				else if (eletypeList[i].name == "date")
 				{
 					countDate++;
-					html.Append("<div id ='li_date' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' > Date<input type='date' value='" + eletypeList[i].label + "' readonly='readonly' id='date_id" + countDate + "' ></div>");
+					html.Append("<div id ='li_date' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' > Date<input type='date' id='date_id" + countDate + "' value='" + DateTime.Today.ToString("yyyy-MM-dd") + "' ></div>");
 				}
 				else if (eletypeList[i].name == "file")
 				{
