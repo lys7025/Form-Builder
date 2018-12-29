@@ -33,9 +33,9 @@ namespace FYP_Form
 
 		private void RetrieveForm()
 		{
-			int staffId = int.Parse(Session["staffId"].ToString());
-			//int staffId = 2;
-			List<Form1> formList = new List<Form1>();
+            int staffId = int.Parse(Session["staffId"].ToString());
+            //int staffId = 2;
+            List<Form1> formList = new List<Form1>();
 
 			string conn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 			SqlConnection sqlConn = new SqlConnection(conn);
@@ -46,7 +46,7 @@ namespace FYP_Form
 			cmdRetrieveForm.Parameters.AddWithValue("@staffId", staffId);
 			SqlDataReader sdr = cmdRetrieveForm.ExecuteReader();
 			htmlTable.Append("<table border = '1'>"); // Append table
-			htmlTable.Append("<tr><th>Date</th><th>Title</th><th>Version</th><th>Status</th></tr>");
+			htmlTable.Append("<tr><th>Date</th><th>Title</th><th>Version</th><th>Status</th><th>URL</th></tr>");
 
 			if (sdr == null || !sdr.HasRows)
 			{
@@ -72,17 +72,20 @@ namespace FYP_Form
 				//Get the form info from list and using loop to display the multiple row form
 				foreach (Form1 frm in formList)
 				{
-						htmlTable.Append("<tr>");
-						htmlTable.Append("<td>" + frm.date.ToShortDateString() + "</td>");
-						htmlTable.Append("<td>" + frm.title + "</td>");
-						htmlTable.Append("<td>" + frm.version + "</td>");
-						htmlTable.Append("<td>" + frm.status + "</td>");
-						htmlTable.AppendFormat("<td><a href='Edit?id={0}'>Edit</a> | ", frm.formId);//Pass form id at that row
-						htmlTable.AppendFormat("<a href='ViewPage?id={0}'>View</a> | ", frm.formId);
-						htmlTable.AppendFormat("<a href='#' onClick='show({0})'>Deactive</a></td>", frm.formId);
-						htmlTable.Append("</tr>");
-					
-				}
+                    //if(frm.status == "active")
+                    //{
+                    htmlTable.Append("<tr>");
+					htmlTable.Append("<td>" + frm.date.ToShortDateString() + "</td>");
+					htmlTable.Append("<td>" + frm.title + "</td>");
+					htmlTable.Append("<td>" + frm.version + "</td>");
+					htmlTable.Append("<td>" + frm.status + "</td>");
+                    htmlTable.AppendFormat("<td>http://localhost:61441/CollectResponse?id={0}</td>", frm.formId);
+                    htmlTable.AppendFormat("<td><a href='Edit?id={0}'>Edit</a> | ", frm.formId);//Pass form id at that row
+					htmlTable.AppendFormat("<a href='ViewPage?id={0}'>View</a> | ", frm.formId);
+					htmlTable.AppendFormat("<a href='DeletePage?id={0}&title={1}'>Delete</a></td>", frm.formId, frm.title);
+					htmlTable.Append("</tr>");
+                    //}
+                }
 			}
 			htmlTable.Append("</table>");
 			phTable.Controls.Add(new Literal { Text = htmlTable.ToString() }); // Place the table where the placeholder put at

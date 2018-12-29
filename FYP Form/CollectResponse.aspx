@@ -16,14 +16,22 @@
         $('#<%=btnSend.ClientID%>').click(function () {
             if (document.getElementById('<%=hfText.ClientID%>').value > 0) {
                 for (var i = 1; i <= document.getElementById('<%=hfText.ClientID%>').value; i++) {
-                    arrText.push(document.getElementById("txtDrag" + i).value);
+                    if (document.getElementById("txtDrag" + i).value == "") {
+                        alert("Please fill in all blank");
+                    } else {
+                        arrText.push(document.getElementById("txtDrag" + i).value);
+                    }
                 }
                 document.getElementById("hfTextArr").value = arrText;
             }
 
             if (document.getElementById('<%=hfTextarea.ClientID%>').value > 0) {
                 for (var i = 1; i <= document.getElementById('<%=hfTextarea.ClientID%>').value; i++) {
-                    arrTextarea.push(document.getElementById("txtareaDrag" + i).value);
+                    if (document.getElementById("txtareaDrag" + i).value == "") {
+                        alert("Please fill in all blank");
+                    } else {
+                        arrTextarea.push(document.getElementById("txtareaDrag" + i).value);
+                    }
                 }
                 document.getElementById("hfTextareaArr").value = arrTextarea;
             }

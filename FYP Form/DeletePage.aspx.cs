@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,8 +15,17 @@ namespace FYP_Form
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			int id = Convert.ToInt32(Request.QueryString["id"]);
-
-			RetrieveForm(id);
+            string title = Request.QueryString["title"];
+            if (MessageBox.Show("Are you sure want to deactivate " + title + " ?", "Deactivate Form", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                //if clicked ok
+                RetrieveForm(id);
+            }
+            else
+            {
+                Response.Redirect("FormPage.aspx");
+            }
+            
 		}
 
 		public void RetrieveForm(int formId)//get form detail by formID

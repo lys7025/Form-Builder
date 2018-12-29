@@ -18,6 +18,7 @@ namespace FYP_Form
 		List<EleListValue> eleListValueList = new List<EleListValue>();
 		StringBuilder html = new StringBuilder();
 		int id = 0;
+        string status = "";
 		int countChildCheck = 1;
 		int countChildRadio = 1;
 		string dbName = "ElementDataDatabase";
@@ -310,16 +311,34 @@ namespace FYP_Form
 
 		}
 
-		protected void btnSend_Click(object sender, EventArgs e)
+        private void RetrieveForm()
+        {
+            string conn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            SqlConnection sqlConn = new SqlConnection(conn);
+            sqlConn.Open();
+            string retrieveForm = "SELECT * FROM Form WHERE formId = @formId";
+
+            SqlCommand cmdRetrieveForm = new SqlCommand(retrieveForm, sqlConn);
+            cmdRetrieveForm.Parameters.AddWithValue("@formId", id);
+            SqlDataReader sdr = cmdRetrieveForm.ExecuteReader();
+            while (sdr.Read())
+            {
+                status = sdr["status"].ToString();
+            }
+            sqlConn.Close();
+        }
+
+        protected void btnSend_Click(object sender, EventArgs e)
 		{
-			//string url = "";
-			////txtLink.Text = url;
-			////InsertMapping();
-			//FYP_Form.CollectResponse collectResponse = new FYP_Form.CollectResponse();
-			//url = collectResponse.GetUrl();
-			//string referrer = Request.UrlReferrer;
-			Response.Write("<script>alert('http://localhost:61441/CollectResponse?id="+id+"')</script>");
-			//ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup();", true);
+            RetrieveForm();
+            if (status == "active")
+            {
+                Response.Write("<script>alert('http://localhost:61441/CollectResponse?id=" + id + "')</script>");
+            }
+            else
+            {
+                Response.Write("<script>alert('This form is deactivated.')</script>");
+            }
 		}
 	}
 }
