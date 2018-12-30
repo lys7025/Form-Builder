@@ -43,7 +43,7 @@
         $('#<%=btnSend.ClientID%>').click(function () {
             if (document.getElementById('<%=hfText.ClientID%>').value > 0) {
                 for (var i = 1; i <= document.getElementById('<%=hfText.ClientID%>').value; i++) {
-                    if (document.getElementById("txtDrag" + i).value == "") {
+                    if (document.getElementById("txtDrag" + i).value == "") {//check whether field is blank
                         alert("Please fill in all blank");
                     } else {
                         arrText.push(document.getElementById("txtDrag" + i).value);
