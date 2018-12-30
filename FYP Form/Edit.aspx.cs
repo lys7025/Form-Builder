@@ -155,7 +155,8 @@ namespace FYP_Form
                     RetrieveImage(eletypeList[i].eleTypeId);
 					countImage++;
 					int temp = countImage - 1;
-					html.Append("<div id ='li_image" + countImage + "' class='form_bal_image1' ondrag='maintainDrag()' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><i class='fa fa-arrows-alt' style='float:right;'></i> <img src ='ShowImage.ashx?id=" + formEleList[i].eleTypeId + "' onclick='changeImage(this.id)' style='width:"+ width +"px; height:"+ height +"px;' id='image" + temp + "'/></div>");
+                    //<a href='#' id='btneditImage" + countImage + "' class='button' onclick='btnclick(this.id)'> resize </a>
+					html.Append("<div id ='li_image" + countImage + "' class='form_bal_image1' ondrag='maintainDrag()' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><i class='fa fa-arrows-alt' style='float:right;'></i> <img src ='ShowImage.ashx?id=" + formEleList[i].eleTypeId + "' onclick='changeImage(this.id)' style='width:"+ width +"px; height:"+ height +"px;' id='image" + temp + "'/><a href='#' id='btneditImage" + temp + "' class='button' onclick='btnclick(this.id)'> resize </a></div>");
 				}
 			}
 			//hfTextLabel.Value = string.Join(",", arrTxtLabel);

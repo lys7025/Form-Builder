@@ -92,6 +92,9 @@
                         }
                         checkCount++;
                     }
+                    if (arrCount == 0) {
+                        alert("Please select checkbox option.");
+                    }
                     arrCheckCount.push(arrCount);
                     count++;
                 }
