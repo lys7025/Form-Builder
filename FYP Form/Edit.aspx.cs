@@ -219,7 +219,7 @@ namespace FYP_Form
 				{
 					if (l == 0)
 					{
-						html.Append("<div id ='li_number" + countNumber + "' class='form_bal_number1' ondrag='maintainDrag()' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><i class='fa fa-arrows-alt' style='float:right;'></i>Quantity<input class='item' id='bigNumQty" + temp + "' type='number' style='left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' min='" + eleListValueList[l].value + "'");
+						html.Append("<div id ='li_number" + countNumber + "' class='form_bal_number1' ondrag='maintainDrag()' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' ><i class='fa fa-arrows-alt' style='float:right;'></i>" + eletypeList[i].label + "<input class='item' id='bigNumQty" + temp + "' type='number' style='left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' min='" + eleListValueList[l].value + "'");
 						arrNumberMin.Add(eleListValueList[l].value);
 					}
 					else
@@ -577,7 +577,10 @@ namespace FYP_Form
 				}
 				else if (name == "number")
 				{
-					eleTypeId = InsertElementtype(name, fontSize, fontColor, fontProperty, fontType, label);
+                    string[] arrNumberLabel = hfNumberLabel.Value.Split(',');
+                    label = arrNumberLabel[i - 1].ToString();
+
+                    eleTypeId = InsertElementtype(name, fontSize, fontColor, fontProperty, fontType, label);
 				}
 				else if (name == "dropdown")
 				{

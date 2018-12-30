@@ -336,6 +336,7 @@
 	var arrParaLabel = [];
 	var arrParaFontType = [];
 	var arrParaFontColor = [];
+    var arrNumberLabel = [];
 	var arrNumberMin = [];
 	var arrNumberMax = [];
 	var arrDdlLabel = [];
@@ -1286,7 +1287,8 @@
 				var totalNo = 0;
 				var numCount = 0;
 				for (var j = 1; j <= countnumber; j++) {
-					if ($("#li_number" + j).length != 0) {
+                    if ($("#li_number" + j).length != 0) {
+                        arrNumberLabel.push($("#numberLB" + numCount).text());
 						arrLeft.push($("#li_number" + j).position().left);
 						arrTop.push($("#li_number" + j).position().top);
 						arrNumberMin.push(document.getElementById("bigNumQty" + numCount).min);
@@ -1299,7 +1301,8 @@
 				document.getElementById("hfNumberLeft").value = arrLeft;
 				document.getElementById("hfNumberTop").value = arrTop;
 				document.getElementById("hfNumberMin").value = arrNumberMin;
-				document.getElementById("hfNumberMax").value = arrNumberMax;
+                document.getElementById("hfNumberMax").value = arrNumberMax;
+                document.getElementById("hfNumberLabel").value = arrNumberLabel;
 			}
 
 			if (countdate > 0) {
@@ -1651,170 +1654,170 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-	<title></title>
+    <title></title>
 </head>
 <body>
-	<form id="form1" runat="server">
-		<div>
+    <form id="form1" runat="server">
+        <div>
 
-			<%--          <a href="#" id="btnedit" class="button" onclick="btnclick()"> Edit </a>--%>
-			<div class="form_builder" style="margin-top: 25px">
-				<div class="row">
-					<div class="col-sm-2">
-						<nav class="nav-sidebar">
-							<ul class="nav">
-								<li class="form_bal_text" id="li_txtfield">
-									<a href="javascript:;">Text Field <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
-								<li class="form_bal_textarea" id="li_textarea">
-									<a href="javascript:;">Text Area <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
-								<li class="form_bal_ddl" id="li_ddl">
-									<a href="javascript:;">DropDownList <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
-								<li class="form_bal_radio" id="li_rb">
-									<a href="javascript:;">Radio Button <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
-								<li class="form_bal_checkbox" id="li_checkbox">
-									<a href="javascript:;">Checkbox <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
-								<li class="form_bal_header" id="li_header">
-									<a href="javascript:;">Header <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
-								<li class="form_bal_paragraph" id="li_paragraph">
-									<a href="javascript:;">Paragraph <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
-								<li class="form_bal_number" id="li_number">
-									<a href="javascript:;">Range Number <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
-								<li class="form_bal_date" id="li_date">
-									<a href="javascript:;">Date <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
-								<%--<li class="form_bal_file" id="li_file">
+            <%--          <a href="#" id="btnedit" class="button" onclick="btnclick()"> Edit </a>--%>
+            <div class="form_builder" style="margin-top: 25px">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <nav class="nav-sidebar">
+                            <ul class="nav">
+                                <li class="form_bal_text" id="li_txtfield">
+                                    <a href="javascript:;">Text Field <i class="fa fa-plus-circle pull-right"></i></a>
+                                </li>
+                                <li class="form_bal_textarea" id="li_textarea">
+                                    <a href="javascript:;">Text Area <i class="fa fa-plus-circle pull-right"></i></a>
+                                </li>
+                                <li class="form_bal_ddl" id="li_ddl">
+                                    <a href="javascript:;">DropDownList <i class="fa fa-plus-circle pull-right"></i></a>
+                                </li>
+                                <li class="form_bal_radio" id="li_rb">
+                                    <a href="javascript:;">Radio Button <i class="fa fa-plus-circle pull-right"></i></a>
+                                </li>
+                                <li class="form_bal_checkbox" id="li_checkbox">
+                                    <a href="javascript:;">Checkbox <i class="fa fa-plus-circle pull-right"></i></a>
+                                </li>
+                                <li class="form_bal_header" id="li_header">
+                                    <a href="javascript:;">Header <i class="fa fa-plus-circle pull-right"></i></a>
+                                </li>
+                                <li class="form_bal_paragraph" id="li_paragraph">
+                                    <a href="javascript:;">Paragraph <i class="fa fa-plus-circle pull-right"></i></a>
+                                </li>
+                                <li class="form_bal_number" id="li_number">
+                                    <a href="javascript:;">Range Number <i class="fa fa-plus-circle pull-right"></i></a>
+                                </li>
+                                <li class="form_bal_date" id="li_date">
+                                    <a href="javascript:;">Date <i class="fa fa-plus-circle pull-right"></i></a>
+                                </li>
+                                <%--<li class="form_bal_file" id="li_file">
 									<a href="javascript:;">File Upload <i class="fa fa-plus-circle pull-right"></i></a>
 								</li>--%>
-								<li class="form_bal_label" id="li_label">
-									<a href="javascript:;">Label <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
-								<li class="form_bal_image" id="li_image">
-									<a href="javascript:;">Image <i class="fa fa-plus-circle pull-right"></i></a>
-								</li>
-							</ul>
-						</nav>
-					</div>
+                                <li class="form_bal_label" id="li_label">
+                                    <a href="javascript:;">Label <i class="fa fa-plus-circle pull-right"></i></a>
+                                </li>
+                                <li class="form_bal_image" id="li_image">
+                                    <a href="javascript:;">Image <i class="fa fa-plus-circle pull-right"></i></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
 
-             
-                    
 
-					<div id="container" class="ui-widget-content">
 
-						<div id="form_com">
 
-							<asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                    <div id="container" class="ui-widget-content">
 
-							<%--<div style="font-family:Arial; font-size:32px; font-weight:bold  "> xxx </div>--%>
-							<%--<input type="file" id="myFile" multiple size="50" onchange="">--%>
-							<%--Date <input type="date" id="date_id">--%>
-						</div>
+                        <div id="form_com">
 
-					</div>
+                            <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
 
-					<div id="deletefield" class="delete">
-						Drag here to delete
-					</div>
+                            <%--<div style="font-family:Arial; font-size:32px; font-weight:bold  "> xxx </div>--%>
+                            <%--<input type="file" id="myFile" multiple size="50" onchange="">--%>
+                            <%--Date <input type="date" id="date_id">--%>
+                        </div>
+
+                    </div>
+
+                    <div id="deletefield" class="delete">
+                        Drag here to delete
+                    </div>
 
                     <div id="cancelPage" class="back">
                         <input id="btnBack" type="button" value="Cancel" onclick="cancelPage()" />
                     </div>
 
-					<asp:FileUpload ID="imgupload" runat="server" Style="display: none" onchange="showImage.call(this)" />
-					<%--<input type="file" id="imgupload" style="display: none" onchange="showImage.call(this)" />--%>
+                    <asp:FileUpload ID="imgupload" runat="server" Style="display: none" onchange="showImage.call(this)" />
+                    <%--<input type="file" id="imgupload" style="display: none" onchange="showImage.call(this)" />--%>
 
-					<div>
-						<asp:HiddenField ID="hfText" runat="server" />
-						<asp:HiddenField ID="hfTextLeft" runat="server" />
-						<asp:HiddenField ID="hfTextTop" runat="server" />
-						<asp:HiddenField ID="hfTextLabel" runat="server" />
+                    <div>
+                        <asp:HiddenField ID="hfText" runat="server" />
+                        <asp:HiddenField ID="hfTextLeft" runat="server" />
+                        <asp:HiddenField ID="hfTextTop" runat="server" />
+                        <asp:HiddenField ID="hfTextLabel" runat="server" />
 
-						<asp:HiddenField ID="hfDrop" runat="server" />
-						<asp:HiddenField ID="hfDropLeft" runat="server" />
-						<asp:HiddenField ID="hfDropTop" runat="server" />
-						<asp:HiddenField ID="hfDropCount" runat="server" />
-						<asp:HiddenField ID="hfDropLabel" runat="server" />
-						<asp:HiddenField ID="hfDropOption" runat="server" />
-						<asp:HiddenField ID="hfDropValue" runat="server" />
+                        <asp:HiddenField ID="hfDrop" runat="server" />
+                        <asp:HiddenField ID="hfDropLeft" runat="server" />
+                        <asp:HiddenField ID="hfDropTop" runat="server" />
+                        <asp:HiddenField ID="hfDropCount" runat="server" />
+                        <asp:HiddenField ID="hfDropLabel" runat="server" />
+                        <asp:HiddenField ID="hfDropOption" runat="server" />
+                        <asp:HiddenField ID="hfDropValue" runat="server" />
 
-						<asp:HiddenField ID="hfRadio" runat="server" />
-						<asp:HiddenField ID="hfRadioLeft" runat="server" />
-						<asp:HiddenField ID="hfRadioTop" runat="server" />
-						<asp:HiddenField ID="hfRadioLabel" runat="server" />
-						<asp:HiddenField ID="hfRadioOption" runat="server" />
-						<asp:HiddenField ID="hfRadioValue" runat="server" />
-						<asp:HiddenField ID="hfRadioCount" runat="server" />
+                        <asp:HiddenField ID="hfRadio" runat="server" />
+                        <asp:HiddenField ID="hfRadioLeft" runat="server" />
+                        <asp:HiddenField ID="hfRadioTop" runat="server" />
+                        <asp:HiddenField ID="hfRadioLabel" runat="server" />
+                        <asp:HiddenField ID="hfRadioOption" runat="server" />
+                        <asp:HiddenField ID="hfRadioValue" runat="server" />
+                        <asp:HiddenField ID="hfRadioCount" runat="server" />
 
-						<asp:HiddenField ID="hfTextarea" runat="server" />
-						<asp:HiddenField ID="hfTextareaLeft" runat="server" />
-						<asp:HiddenField ID="hfTextareaTop" runat="server" />
-						<asp:HiddenField ID="hfTextareaLabel" runat="server" />
+                        <asp:HiddenField ID="hfTextarea" runat="server" />
+                        <asp:HiddenField ID="hfTextareaLeft" runat="server" />
+                        <asp:HiddenField ID="hfTextareaTop" runat="server" />
+                        <asp:HiddenField ID="hfTextareaLabel" runat="server" />
 
-						<asp:HiddenField ID="hfCheck" runat="server" />
-						<asp:HiddenField ID="hfCheckLeft" runat="server" />
-						<asp:HiddenField ID="hfCheckTop" runat="server" />
-						<asp:HiddenField ID="hfCheckLabel" runat="server" />
-						<asp:HiddenField ID="hfCheckOption" runat="server" />
-						<asp:HiddenField ID="hfCheckValue" runat="server" />
-						<asp:HiddenField ID="hfCheckCount" runat="server" />
+                        <asp:HiddenField ID="hfCheck" runat="server" />
+                        <asp:HiddenField ID="hfCheckLeft" runat="server" />
+                        <asp:HiddenField ID="hfCheckTop" runat="server" />
+                        <asp:HiddenField ID="hfCheckLabel" runat="server" />
+                        <asp:HiddenField ID="hfCheckOption" runat="server" />
+                        <asp:HiddenField ID="hfCheckValue" runat="server" />
+                        <asp:HiddenField ID="hfCheckCount" runat="server" />
 
-						<asp:HiddenField ID="hfHeader" runat="server" />
-						<asp:HiddenField ID="hfHeaderLeft" runat="server" />
-						<asp:HiddenField ID="hfHeaderTop" runat="server" />
-						<asp:HiddenField ID="hfHeaderLabel" runat="server" />
-						<asp:HiddenField ID="hfHeaderFontFami" runat="server" />
-						<asp:HiddenField ID="hfHeaderFontSize" runat="server" />
+                        <asp:HiddenField ID="hfHeader" runat="server" />
+                        <asp:HiddenField ID="hfHeaderLeft" runat="server" />
+                        <asp:HiddenField ID="hfHeaderTop" runat="server" />
+                        <asp:HiddenField ID="hfHeaderLabel" runat="server" />
+                        <asp:HiddenField ID="hfHeaderFontFami" runat="server" />
+                        <asp:HiddenField ID="hfHeaderFontSize" runat="server" />
 
-						<asp:HiddenField ID="hfParagraph" runat="server" />
-						<asp:HiddenField ID="hfParagraphLeft" runat="server" />
-						<asp:HiddenField ID="hfParagraphTop" runat="server" />
-						<asp:HiddenField ID="hfParagraphLabel" runat="server" />
-						<asp:HiddenField ID="hfParagraphFontType" runat="server" />
-						<asp:HiddenField ID="hfParagraphFontColor" runat="server" />
+                        <asp:HiddenField ID="hfParagraph" runat="server" />
+                        <asp:HiddenField ID="hfParagraphLeft" runat="server" />
+                        <asp:HiddenField ID="hfParagraphTop" runat="server" />
+                        <asp:HiddenField ID="hfParagraphLabel" runat="server" />
+                        <asp:HiddenField ID="hfParagraphFontType" runat="server" />
+                        <asp:HiddenField ID="hfParagraphFontColor" runat="server" />
 
-						<asp:HiddenField ID="hfNumber" runat="server" />
-						<asp:HiddenField ID="hfNumberLeft" runat="server" />
-						<asp:HiddenField ID="hfNumberTop" runat="server" />
-						<asp:HiddenField ID="hfNumberLabel" runat="server" />
-						<asp:HiddenField ID="hfNumberMin" runat="server" />
-						<asp:HiddenField ID="hfNumberMax" runat="server" />
+                        <asp:HiddenField ID="hfNumber" runat="server" />
+                        <asp:HiddenField ID="hfNumberLeft" runat="server" />
+                        <asp:HiddenField ID="hfNumberTop" runat="server" />
+                        <asp:HiddenField ID="hfNumberLabel" runat="server" />
+                        <asp:HiddenField ID="hfNumberMin" runat="server" />
+                        <asp:HiddenField ID="hfNumberMax" runat="server" />
 
-						<asp:HiddenField ID="hfDate" runat="server" />
-						<asp:HiddenField ID="hfDateLeft" runat="server" />
-						<asp:HiddenField ID="hfDateTop" runat="server" />
-						<asp:HiddenField ID="hfDateLabel" runat="server" />
+                        <asp:HiddenField ID="hfDate" runat="server" />
+                        <asp:HiddenField ID="hfDateLeft" runat="server" />
+                        <asp:HiddenField ID="hfDateTop" runat="server" />
+                        <asp:HiddenField ID="hfDateLabel" runat="server" />
 
-						<asp:HiddenField ID="hfFile" runat="server" />
-						<asp:HiddenField ID="hfFileLeft" runat="server" />
-						<asp:HiddenField ID="hfFileTop" runat="server" />
+                        <asp:HiddenField ID="hfFile" runat="server" />
+                        <asp:HiddenField ID="hfFileLeft" runat="server" />
+                        <asp:HiddenField ID="hfFileTop" runat="server" />
 
-						<asp:HiddenField ID="hfLabel" runat="server" />
-						<asp:HiddenField ID="hfLabelLeft" runat="server" />
-						<asp:HiddenField ID="hfLabelTop" runat="server" />
-						<asp:HiddenField ID="hfLabelText" runat="server" />
-						<asp:HiddenField ID="hfLabelFontSize" runat="server" />
+                        <asp:HiddenField ID="hfLabel" runat="server" />
+                        <asp:HiddenField ID="hfLabelLeft" runat="server" />
+                        <asp:HiddenField ID="hfLabelTop" runat="server" />
+                        <asp:HiddenField ID="hfLabelText" runat="server" />
+                        <asp:HiddenField ID="hfLabelFontSize" runat="server" />
 
-						<asp:HiddenField ID="hfImage" runat="server" />
-						<asp:HiddenField ID="hfImageLeft" runat="server" />
-						<asp:HiddenField ID="hfImageTop" runat="server" />
+                        <asp:HiddenField ID="hfImage" runat="server" />
+                        <asp:HiddenField ID="hfImageLeft" runat="server" />
+                        <asp:HiddenField ID="hfImageTop" runat="server" />
                         <asp:HiddenField ID="hfImageWidth" runat="server" />
                         <asp:HiddenField ID="hfImageHeight" runat="server" />
-						<%--<div id="phHidden"></div>--%>
-						<%--<asp:PlaceHolder ID="phHidden" runat="server"></asp:PlaceHolder>--%>
-					</div>
+                        <%--<div id="phHidden"></div>--%>
+                        <%--<asp:PlaceHolder ID="phHidden" runat="server"></asp:PlaceHolder>--%>
+                    </div>
 
 
-					<%--                    <div class="col-md-5 bal_builder">
+                    <%--                    <div class="col-md-5 bal_builder">
                         <div class="form_builder_area"></div>
                     </div>--%>
-					<%--                    <div class="col-md-5">
+                    <%--                    <div class="col-md-5">
                         <div class="col-md-12">
                             <form class="form-horizontal">
                                 <div class="preview"></div>
@@ -1822,77 +1825,76 @@
                             </form>
                         </div>
                     </div>--%>
-				</div>
-			</div>
+                </div>
+            </div>
 
 
-			<div class="divInsert">
-				<asp:Button ID="btnInsert" runat="server" Text="Save" OnClick="btnInsert_Click" CssClass="buttonInsert" />
-			</div>
+            <div class="divInsert">
+                <asp:Button ID="btnInsert" runat="server" Text="Save" OnClick="btnInsert_Click" CssClass="buttonInsert" />
+            </div>
 
-			<div class="bg-modal">
-				<div class="modal-content">
-					<div class="close">+</div>
+            <div class="bg-modal">
+                <div class="modal-content">
+                    <div class="close">+</div>
 
-					Label 
+                    Label 
 					<input type="text" id="changeLabel" />
-					<input type="button" value="save" onclick="changelabeltxt()" />
-					<%--<a href="#" id="elemdelete" class="delete" onclick="btndelete()"> remove </a>--%>
-				</div>
-			</div>
+                    <input type="button" value="save" onclick="changelabeltxt()" />
+                    <%--<a href="#" id="elemdelete" class="delete" onclick="btndelete()"> remove </a>--%>
+                </div>
+            </div>
 
-			<div class="bg-modal-txtarea">
+            <div class="bg-modal-txtarea">
 
-				<div class="modal-content">
-					<div class="closetxtarea">+</div>
+                <div class="modal-content">
+                    <div class="closetxtarea">+</div>
 
-					Label 
+                    Label 
 					<input type="text" id="changeLabeltxtarea" />
-					<input type="button" value="save" onclick="changelabeltxtarea()" />
+                    <input type="button" value="save" onclick="changelabeltxtarea()" />
 
-				</div>
-			</div>
+                </div>
+            </div>
 
-			<div class="bg-modal-select">
-				<div class="modal-content">
+            <div class="bg-modal-select">
+                <div class="modal-content">
 
-					<div class="close_select">+</div>
+                    <div class="close_select">+</div>
 
-					Label
+                    Label
 					<input type="text" id="changeLabelDDL" />
-					<input type="button" value="Change Label Name" onclick="changeDDLText()" />
+                    <input type="button" value="Change Label Name" onclick="changeDDLText()" />
 
                     <br />
                     ------------------------------------------------------------------------------------------
                     <br />
-					<div id="select-option">
-						Text 
+                    <div id="select-option">
+                        Text 
 						<input type="text" id="getSelectText" />
-						<%--Value
+                        <%--Value
 						<input type="text" id="getSelectValue" />--%>
+                    </div>
 
-					</div>
+                    <input type="button" value="Add" onclick="addSelectValue()" />
+                </div>
+            </div>
 
-					<input type="button" value="Add" onclick="addSelectValue()" />
-				</div>
-			</div>
+            <div class="bg-modal-header">
 
-			<div class="bg-modal-header">
+                <div class="modal-content">
+                    <div class="close_header">+</div>
 
-				<div class="modal-content">
-					<div class="close_header">+</div>
-
-					Label 
+                    Label 
 					<input type="text" id="changeLabelHeader" />
                     <br />
                     Font Family
 					<select id="SelectFontFamily" style="width: 180px; height: 23px">
 
-						<option value="Algerian" style="font-family: Algerian;">Algerian</option>
-						<option value="Garamond" style="font-family: Garamond;">Garamond</option>
-						<option value="Latha" style="font-family: Latha;">Latha</option>
-						<option value="Constantia" style="font-family: Constantia;">Constantia</option>
-						<option value="Georgia" style="font-family: Georgia;">Georgia</option>
+                        <option value="Algerian" style="font-family: Algerian;">Algerian</option>
+                        <option value="Garamond" style="font-family: Garamond;">Garamond</option>
+                        <option value="Latha" style="font-family: Latha;">Latha</option>
+                        <option value="Constantia" style="font-family: Constantia;">Constantia</option>
+                        <option value="Georgia" style="font-family: Georgia;">Georgia</option>
                         <option value="Palatino Linotype" style="font-family: Palatino Linotype;">Palatino Linotype</option>
                         <option value="Book Antiqua" style="font-family: Book Antiqua;">Book Antiqua</option>
                         <option value="Times New Roman" style="font-family: Times New Roman;">Times New Roman</option>
@@ -1916,167 +1918,167 @@
                         <option value="Courier New" style="font-family: Courier New;">Courier New</option>
                         <option value="Lucida Console" style="font-family: Lucida Console;">Lucida Console</option>
 
-					</select>
-					<br />
+                    </select>
+                    <br />
                     Font Size
 					<select id="SelectFontSize" style="width: 180px; height: 23px">
 
-						<option value="12">12</option>
-						<option value="14">14</option>
-						<option value="16">16</option>
-						<option value="18">18</option>
-						<option value="20">20</option>
-						<option value="24">24</option>
-						<option value="28">28</option>
-						<option value="32">32</option>
-						<option value="36">36</option>
-						<option value="42">42</option>
-						<option value="48">48</option>
-						<option value="56">56</option>
-						<option value="70">70</option>
-						<option value="78">78</option>
-						<option value="88">88</option>
-					</select>
+                        <option value="12">12</option>
+                        <option value="14">14</option>
+                        <option value="16">16</option>
+                        <option value="18">18</option>
+                        <option value="20">20</option>
+                        <option value="24">24</option>
+                        <option value="28">28</option>
+                        <option value="32">32</option>
+                        <option value="36">36</option>
+                        <option value="42">42</option>
+                        <option value="48">48</option>
+                        <option value="56">56</option>
+                        <option value="70">70</option>
+                        <option value="78">78</option>
+                        <option value="88">88</option>
+                    </select>
                     <br />
 
-					<input type="button" value="save" onclick="changeHeader()" />
+                    <input type="button" value="save" onclick="changeHeader()" />
 
-				</div>
-			</div>
+                </div>
+            </div>
 
-			<div class="bg-modal-radio">
+            <div class="bg-modal-radio">
 
-				<div class="modal-content">
-					<div class="close_radio">+</div>
+                <div class="modal-content">
+                    <div class="close_radio">+</div>
 
-					Label
+                    Label
 					<input type="text" id="changeLabelRadio" />
-					<input type="button" value="Change Label Name" onclick="changeRadioText()" />
-					<br />
+                    <input type="button" value="Change Label Name" onclick="changeRadioText()" />
+                    <br />
                     ------------------------------------------------------------------------------------------
                     <br />
 
-					Radio Text 
+                    Radio Text 
 					<input type="text" id="addRadioText" />
-					<br />
-					<%--Radio Value 
+                    <br />
+                    <%--Radio Value 
 					<input type="text" id="addRadioValue" />--%>
-					<br />
-					<input type="button" value="Add Radio" onclick="addRadio()" />
+                    <br />
+                    <input type="button" value="Add Radio" onclick="addRadio()" />
 
-				</div>
-			</div>
+                </div>
+            </div>
 
-			<div class="bg-modal-para">
+            <div class="bg-modal-para">
 
-				<div class="modal-content">
-					<div class="close_para">+</div>
+                <div class="modal-content">
+                    <div class="close_para">+</div>
 
-					<textarea id="changeParaText" rows="5" cols="50">  </textarea>
-					<br />
-					<select id="Para_font_color" style="width: 180px; height: 23px">
+                    <textarea id="changeParaText" rows="5" cols="50">  </textarea>
+                    <br />
+                    <select id="Para_font_color" style="width: 180px; height: 23px">
 
-						<option value="black">black</option>
-						<option value="red">red</option>
-						<option value="blue">blue</option>
-						<option value="yellow">yellow</option>
-						<option value="white">white</option>
-						<option value="green">green</option>
+                        <option value="black">black</option>
+                        <option value="red">red</option>
+                        <option value="blue">blue</option>
+                        <option value="yellow">yellow</option>
+                        <option value="white">white</option>
+                        <option value="green">green</option>
 
-                        
 
-					</select>
 
-					<br />
-					<input type="radio" name="parafontstyle" value="Bold">
-					Bold<br>
-					<input type="radio" name="parafontstyle" value="Normal">
-					Normal<br>
-					<input type="radio" name="parafontstyle" value="italic">
-					italic
+                    </select>
+
+                    <br />
+                    <input type="radio" name="parafontstyle" value="Bold">
+                    Bold<br>
+                    <input type="radio" name="parafontstyle" value="Normal">
+                    Normal<br>
+                    <input type="radio" name="parafontstyle" value="italic">
+                    italic
 					
                     <br />
-					<input type="button" value="save" onclick="changePara()" />
+                    <input type="button" value="save" onclick="changePara()" />
 
-				</div>
-			</div>
+                </div>
+            </div>
 
 
-			<div class="bg-modal-number">
+            <div class="bg-modal-number">
 
-				<div class="modal-content">
-					<div class="close_number">+</div>
+                <div class="modal-content">
+                    <div class="close_number">+</div>
 
 
                     Label
 					<input type="text" id="changeLabelNumber" />
                     <input type="button" value="Change Label Name" onclick="changeNumberText()" />
-					<br />
+                    <br />
                     ------------------------------------------------------------------------------------------
                     <br />
 
-					Min quantity 
+                    Min quantity 
 					<input type="number" id="changeMinNumber" value="1" />
-					<br />
-					Max quantity 
+                    <br />
+                    Max quantity 
 					<input type="number" id="changeMaxNumber" value="5" />
 
-					<input type="button" value="save" onclick="changeBigNumber()" />
+                    <input type="button" value="save" onclick="changeBigNumber()" />
 
-				</div>
-			</div>
+                </div>
+            </div>
 
-			<div class="bg-modal-check">
+            <div class="bg-modal-check">
 
-				<div class="modal-content">
-					<div class="close_check">+</div>
+                <div class="modal-content">
+                    <div class="close_check">+</div>
 
-					Label
+                    Label
 					<input type="text" id="changeLabelCheck" />
-					<input type="button" value="Change Label Name" onclick="changeCheckText()" />
-					<br />
+                    <input type="button" value="Change Label Name" onclick="changeCheckText()" />
+                    <br />
                     <br />
                     ------------------------------------------------------------------------------------------
                     <br />
 
-					Check Text 
+                    Check Text 
 					<input type="text" id="addCheckText" />
-					<br />
-					<%--Check Value 
+                    <br />
+                    <%--Check Value 
 					<input type="text" id="addCheckValue" />--%>
-					<br />
-					<input type="button" value="Add Check" onclick="addCheck()" />
+                    <br />
+                    <input type="button" value="Add Check" onclick="addCheck()" />
 
-				</div>
-			</div>
+                </div>
+            </div>
 
             <div class="bg-modal-image">
 
-				<div class="modal-content">
-					<div class="close_image">+</div>
+                <div class="modal-content">
+                    <div class="close_image">+</div>
 
-					Height
+                    Height
 					<input type="text" id="changeImageHeight" onkeypress="return isNumber(event)" />
                     <br />
                     Width
                     <input type="text" id="changeImageWidth" onkeypress="return isNumber(event)" />
-					<input type="button" value="Change Size" onclick="resizeImage()" />
-					<br />
+                    <input type="button" value="Change Size" onclick="resizeImage()" />
+                    <br />
 
 
-				</div>
-			</div>
+                </div>
+            </div>
 
 
-			<div class="bg-modal-label">
+            <div class="bg-modal-label">
 
-				<div class="modal-content">
-					<div class="close_label">+</div>
+                <div class="modal-content">
+                    <div class="close_label">+</div>
 
-					Label 
+                    Label 
 					<input type="text" id="changeLabelValue" />
 
-					<br />
+                    <br />
                     Font Size
 					<select id="SelectFontSizeLabel" style="width: 180px; height: 23px">
 
@@ -2084,30 +2086,30 @@
                         <option value="9">9</option>
                         <option value="10">10</option>
                         <option value="11">11</option>
-						<option value="12">12</option>
-						<option value="14">14</option>
-						<option value="16">16</option>
-						<option value="18">18</option>
-						<option value="20">20</option>
-						<option value="24">24</option>
-						<option value="28">28</option>
-						<option value="32">32</option>
-						<option value="36">36</option>
-						<option value="42">42</option>
-						<option value="48">48</option>
-						<option value="56">56</option>
-						<option value="70">70</option>
-						<option value="78">78</option>
-						<option value="88">88</option>
-					</select>
+                        <option value="12">12</option>
+                        <option value="14">14</option>
+                        <option value="16">16</option>
+                        <option value="18">18</option>
+                        <option value="20">20</option>
+                        <option value="24">24</option>
+                        <option value="28">28</option>
+                        <option value="32">32</option>
+                        <option value="36">36</option>
+                        <option value="42">42</option>
+                        <option value="48">48</option>
+                        <option value="56">56</option>
+                        <option value="70">70</option>
+                        <option value="78">78</option>
+                        <option value="88">88</option>
+                    </select>
 
-					<input type="button" value="save" onclick="changeLabelFunction()" />
+                    <input type="button" value="save" onclick="changeLabelFunction()" />
 
-				</div>
-			</div>
+                </div>
+            </div>
 
-		</div>
+        </div>
 
-	</form>
+    </form>
 </body>
 </html>

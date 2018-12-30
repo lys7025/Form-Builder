@@ -150,8 +150,10 @@ namespace FYP_Form
 				}
 				else if (name == "number")
 				{
+                    string[] arrNumberLabel = hfNumberLabel.Value.Split(',');
+                    label = arrNumberLabel[i - 1].ToString();
 
-					eleTypeId = InsertElementtype(name, fontSize, fontColor, fontProperty, fontType, label);
+                    eleTypeId = InsertElementtype(name, fontSize, fontColor, fontProperty, fontType, label);
 				}
 				else if (name == "dropdown")
 				{

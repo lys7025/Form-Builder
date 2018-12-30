@@ -1237,7 +1237,8 @@
                 var totalNo = 0;
 				var numCount = 0;
 				for (var j = 1; j <= document.getElementById('<%=hfNumber.ClientID%>').value; j++) {
-					if ($("#li_number" + j).length != 0) {
+                    if ($("#li_number" + j).length != 0) {
+                        arrNumberLabel.push($("#numberLB" + numCount).text());
 						arrLeft.push($("#li_number" + j).position().left);
 						arrTop.push($("#li_number" + j).position().top);
 						arrNumberMin.push(document.getElementById("bigNumQty" + numCount).min);
@@ -1250,7 +1251,8 @@
 				document.getElementById("hfNumberLeft").value = arrLeft;
 				document.getElementById("hfNumberTop").value = arrTop;
 				document.getElementById("hfNumberMin").value = arrNumberMin;
-				document.getElementById("hfNumberMax").value = arrNumberMax;
+                document.getElementById("hfNumberMax").value = arrNumberMax;
+                document.getElementById("hfNumberLabel").value = arrNumberLabel;
 			}
 
 			if (document.getElementById('<%=hfDate.ClientID%>').value > 0) {

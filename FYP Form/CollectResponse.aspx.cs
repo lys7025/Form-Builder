@@ -171,14 +171,14 @@ namespace FYP_Form
 				{
 					if (l == 0)
 					{
-						html.Append("<div id ='li_number' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' >Quantity<input class='item' id='number" + countNumber + "' type='number' style='left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' min='" + eleListValueList[l].value + "'");
+						html.Append("<div id ='li_number' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' >" + eletypeList[i].label + "<input class='item' id='number" + countNumber + "' type='number' style='left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' min='" + eleListValueList[l].value + "'");
 					}
 					else
 					{
 						html.Append("max='" + eleListValueList[l].value + "'/></div>");
 					}
 				}
-				arrColName.Add("Quantity");
+				arrColName.Add(eletypeList[i].label);
             }
 			else if (eletypeList[i].name == "radio")
 			{

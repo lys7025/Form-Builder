@@ -150,7 +150,7 @@ namespace FYP_Form
 				{
 					if (l == 0)
 					{
-						html.Append("<div id ='li_number" + countNumber + "' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' >Quantity<input class='item' id='bigNumQty" + temp + "' type='number' style='left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' min='" + eleListValueList[l].value + "'");
+						html.Append("<div id ='li_number" + countNumber + "' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' >" + eletypeList[i].label + "<input class='item' id='bigNumQty" + temp + "' type='number' style='left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px;' min='" + eleListValueList[l].value + "'");
 					}
 					else
 					{
