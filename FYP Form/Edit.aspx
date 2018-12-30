@@ -278,6 +278,27 @@
 		font-size: 40px;
 		transform: rotate(45deg);
 	}
+
+    .bg-modal-image {
+		width: 100%;
+		height: 100%;
+		background-color: black;
+		opacity: 0.9;
+		position: absolute;
+		top: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		display: none;
+	}
+
+	.close_image {
+		position: absolute;
+		top: 0;
+		right: 14px;
+		font-size: 40px;
+		transform: rotate(45deg);
+	}
 </style>
 
 
@@ -408,9 +429,9 @@
 
 		for (var j = 1; j <= document.getElementById('<%=hfImage.ClientID%>').value; j++) {
 
-			if (id == "" + (j - 1)) {
+			if (id == "btneditImage" + (j - 1)) {
 
-				document.querySelector(".bg-modal").style.display = "flex";
+				document.querySelector(".bg-modal-image").style.display = "flex";
 
 			}
 		}
@@ -704,6 +725,32 @@
 			}
 			obj.readAsDataURL(this.files[0]);
 		}
+    }
+
+    function resizeImage(id) {
+
+        if (document.getElementById("changeImageHeight").value == "" || document.getElementById("changeImageWidth").value == "" ) {
+
+			alert("Please enter the height and width");
+		} else {
+
+            var image = document.getElementById("image" + getImageInt);
+            var height = document.getElementById("changeImageHeight").value;
+            var width = document.getElementById("changeImageWidth").value;
+
+            image.style.height = height+"px";
+            image.style.width = width+"px";
+
+            document.getElementById("hfImageWidth").value = width;
+            document.getElementById("hfImageHeight").value = height;
+		   
+			alert("Change successfully");
+			document.querySelector('.bg-modal-image').style.display = 'none';
+			
+
+		}
+
+    
     }
 
     function cancelPage() {
@@ -1467,7 +1514,7 @@
 
 		function getImage(event) {
 
-			return ' <div id="li_image' + document.getElementById('<%=hfImage.ClientID%>').value + '" class="form_bal_image1" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i> <img src="" onclick="changeImage(this.id)" style="width:150px; height:150px" id="image' + document.getElementById('<%=hfImage.ClientID%>').value + '" />  </div>'
+			return ' <div id="li_image' + document.getElementById('<%=hfImage.ClientID%>').value + '" class="form_bal_image1" ondrag="maintainDrag()" > <i class="fa fa-arrows-alt" style="float:right"></i> <img src="" onclick="changeImage(this.id)" style="width:150px; height:150px" id="image' + document.getElementById('<%=hfImage.ClientID%>').value + '" /> <a href="#" id="btneditImage' + document.getElementById('<%=hfImage.ClientID%>').value + '" class="button" onclick="btnclick(this.id)"> resize </a>     </div>'
 		}
 
 		//Close edit dialog
@@ -1892,6 +1939,23 @@
 					<input type="text" id="addCheckValue" />--%>
 					<br />
 					<input type="button" value="Add Radio" onclick="addCheck()" />
+
+				</div>
+			</div>
+
+            <div class="bg-modal-image">
+
+				<div class="modal-content">
+					<div class="close_image">+</div>
+
+					Height
+					<input type="text" id="changeImageHeight" onkeypress="return isNumber(event)" />
+                    <br />
+                    Width
+                    <input type="text" id="changeImageWidth" onkeypress="return isNumber(event)" />
+					<input type="button" value="Change Size" onclick="resizeImage()" />
+					<br />
+
 
 				</div>
 			</div>
