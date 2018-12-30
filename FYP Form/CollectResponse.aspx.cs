@@ -102,7 +102,7 @@ namespace FYP_Form
 				else if (eletypeList[i].name == "header")
 				{
 					countHeader++;
-					html.Append("<div id ='li_header' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><div id='headerlb" + countHeader + "' style='font-family:" + eletypeList[i].fontType + "; font-size:" + eletypeList[i].fontSize + "px; font-weight:bold'>" + eletypeList[i].label + "</div></div>");
+					html.Append("<div id ='li_header' style='word-wrap:break-word;width:700px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><div id='headerlb" + countHeader + "' style='font-family:" + eletypeList[i].fontType + "; font-size:" + eletypeList[i].fontSize + "px; font-weight:bold'>" + eletypeList[i].label + "</div></div>");
 				}
 				else if (eletypeList[i].name == "paragraph")
 				{
@@ -125,7 +125,7 @@ namespace FYP_Form
 				{
 					countLabel++;
 					int temp = countLabel - 1;
-					html.Append("<div id ='li_label" + countLabel + "' style='position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><div id='labelID" + temp + "' style='font-size:" + eletypeList[i].fontSize + "px;'>" + eletypeList[i].label + "</div></div>");
+					html.Append("<div id ='li_label" + countLabel + "' style='word-wrap:break-word;width:700px; position: absolute; left:" + formEleList[i].xPosition + "px; top:" + formEleList[i].yPosition + "px; ' ><div id='labelID" + temp + "' style='font-size:" + eletypeList[i].fontSize + "px;'>" + eletypeList[i].label + "</div></div>");
 				}
 				else if (eletypeList[i].name == "image")
 				{

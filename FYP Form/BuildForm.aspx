@@ -1892,7 +1892,30 @@
 						<option value="Garamond" style="font-family: Garamond;">Garamond</option>
 						<option value="Latha" style="font-family: Latha;">Latha</option>
 						<option value="Constantia" style="font-family: Constantia;">Constantia</option>
-						<option value="Arial" style="font-family: Arial;">Arial</option>
+						<option value="Georgia" style="font-family: Georgia;">Georgia</option>
+                        <option value="Palatino Linotype" style="font-family: Palatino Linotype;">Palatino Linotype</option>
+                        <option value="Book Antiqua" style="font-family: Book Antiqua;">Book Antiqua</option>
+                        <option value="Times New Roman" style="font-family: Times New Roman;">Times New Roman</option>
+                        <option value="Helvetica" style="font-family: Helvetica;">Helvetica</option>
+                        <option value="Arial Black" style="font-family: Arial Black;">Arial Black</option>
+                        <option value="Impact" style="font-family: Impact;">Impact</option>
+                        <option value="Lucida Sans Unicode" style="font-family: Lucida Sans Unicode;">Lucida Sans Unicode</option>
+                        <option value="Tahoma" style="font-family: Tahoma;">Tahoma</option>
+                        <option value="Verdana" style="font-family: Verdana;">Verdana</option>
+                        <option value="Courier New" style="font-family: Courier New;">Courier New</option>
+                        <option value="Lucida Console" style="font-family: Lucida Console;">Lucida Console</option>
+                        <option value="Calibri" style="font-family: Calibri;">Calibri</option>
+                        <option value="Geneva" style="font-family: Geneva;">Geneva</option>
+                        <option value="Candara" style="font-family: Candara;">Candara</option>
+                        <option value="Gill Sans" style="font-family: Gill Sans;">Gill Sans</option>
+                        <option value="Trebuchet MS" style="font-family: Trebuchet MS;">Trebuchet MS</option>
+                        <option value="Tahoma" style="font-family: Tahoma;">Tahoma</option>
+                        <option value="Cambria" style="font-family: Cambria;">Cambria</option>
+                        <option value="Garamond" style="font-family: Garamond;">Garamond</option>
+                        <option value="Palatino" style="font-family: Palatino;">Palatino</option>
+                        <option value="Courier New" style="font-family: Courier New;">Courier New</option>
+                        <option value="Lucida Console" style="font-family: Lucida Console;">Lucida Console</option>
+
 					</select>
 					<br />
                     Font Size
